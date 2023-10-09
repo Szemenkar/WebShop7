@@ -1,0 +1,17 @@
+09 Oktober
+
+- User handling (registrering, inloggning customer/admin)
+	Customer.cs
+	Admin.cs
+
+- Produkter (statiska produkter m. priser, admin lägg till/ta bort)
+	Product.cs
+	Admin.cs
+
+- Varukorgen (lägg till/ta bort)
+	<-- products.txt
+
+- Köp (spara beställningen, köphistorik)
+
+- Admin (menyer, ändra/lägga till produkter)
+	--> products.txt
