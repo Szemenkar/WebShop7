@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace e_commerce_project;
+﻿namespace e_commerce_project;
 // Customer Class
 
 // Registrera sig som ny kund.
@@ -12,7 +6,7 @@ namespace e_commerce_project;
 // Genomföra köp, spara beställningar och kvitto kopplat till deras konton.
 // Se sin egen köphistorik
 
-    public class Customer
+public class Customer
     {
         public string Username;
         public string _password;

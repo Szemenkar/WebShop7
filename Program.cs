@@ -1,17 +1,16 @@
-using e_commerce_project;
 // Apparel 7
-string[] title = File.ReadAllLines("../../../title.txt");
+// "../../../"
+
+// Användarinfo -- /data/customerLogin.txt 
+// Admininfo -- /data/adminLogin.txt
+// Produktinfo -- /data/products.txt
+// Kvitton -- /data/receipts.txt
+
+// Add to Cart
+// Complete Purchase --> makeOrder (save receipt)
+
+string[] title = File.ReadAllLines("../../../data/title.txt");
 foreach (var line in title)
 {
     Console.WriteLine(line);
 }
-
-// "../../../"
-
-// Användarinfo -- customerLogin.txt 
-// Admininfo -- adminLogin.txt
-// Produktinfo -- products.txt
-// Kvitton -- receipts.txt
-
-// Add to Cart
-// Complete Purchase --> makeOrder (save receipt)
