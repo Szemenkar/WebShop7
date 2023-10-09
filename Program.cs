@@ -1,4 +1,4 @@
-﻿using e_commerce_project;
+using e_commerce_project;
 // Apparel 7
 string[] title = File.ReadAllLines("../../../title.txt");
 foreach (var line in title)
@@ -15,5 +15,3 @@ foreach (var line in title)
 
 // Add to Cart
 // Complete Purchase --> makeOrder (save receipt)
-
-
