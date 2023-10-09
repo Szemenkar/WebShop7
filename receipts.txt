@@ -1,0 +1,5 @@
+Order ID:
+Customer:
+Date & Time:
+Products:
+Subtotal:
