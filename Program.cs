@@ -18,4 +18,6 @@ Console.ReadKey();
 Console.Clear();
 
 // In i admin menu -->
-Admin.AddProduct();
+//Admin.AddProduct();
+
+Products.fetchProducts();
