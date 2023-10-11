@@ -1,1 +1,4 @@
-string Product Title : int Price
+Armless Winter Jacket:$19.90
+Wrinkly Summer Jacket:$16
+Recycled Hipster Beanie:$99.99
+Oversized Skinny Jeans:$49.99
