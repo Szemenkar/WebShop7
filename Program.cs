@@ -1,5 +1,4 @@
 // Apparel 7
-// "../../../"
 
 // Användarinfo -- /data/customerLogin.txt 
 // Admininfo -- /data/adminLogin.txt
@@ -16,8 +15,4 @@ foreach (var line in title)
 }
 Console.ReadKey();
 Console.Clear();
-
-// In i admin menu -->
-//Admin.AddProduct();
-
 Products.fetchProducts();
