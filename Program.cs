@@ -15,6 +15,7 @@ foreach (var line in title)
 }
 Console.ReadKey();
 Console.Clear();
+Console.WriteLine();
 
 // Init
 
@@ -22,6 +23,8 @@ bool init = true;
 do
 {
     Console.WriteLine("Welcome to Apparel 7\n1.Login as Customer\n2.Register new Customer\n3.Login as Admin");
+    Console.WriteLine();
+    Console.Write("Enter choice: ");
     string input = Console.ReadLine();
     switch (input)
     {
@@ -31,9 +34,11 @@ do
         case "2":
             Customer.Register();
             break;
+        case "3":
+            Admin.AdminMenu();
+            break;
         default:
             Console.WriteLine("Invalid input");
             break;
-            // case 3: Admin.Login();
     }
 } while (init);
