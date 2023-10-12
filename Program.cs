@@ -1,8 +1,4 @@
-﻿using Internal;
-using System.Collections.Generic;
-using System.IO;
-
-class Program
+﻿class Program
 {
     static List<Product> products = new List<Product>();
     static List<Product> order = new List<Product>();
