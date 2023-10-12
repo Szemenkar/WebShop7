@@ -1,6 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace e_commerce_project;
+﻿namespace e_commerce_project;
 // Customer Class
 
 // Registrera sig som ny kund.
@@ -47,7 +45,7 @@ public class Customer
 
         while (!loggedIn)
         {
-            string[] dataLines = File.ReadAllLines("C:\\Users\\kalle\\source\\repos\\WebShop7\\data\\customerLogin.txt");
+            string[] dataLines = File.ReadAllLines("../../../customerLogin.txt");
 
             foreach (string userDataLine in dataLines)
             {
@@ -83,7 +81,7 @@ public class Customer
     {
         List<string> OldUserData = new List<string>();
 
-        OldUserData = File.ReadAllLines("C:\\Users\\kalle\\source\\repos\\WebShop7\\data\\customerLogin.txt").ToList();
+        OldUserData = File.ReadAllLines("../../../customerLogin.txt").ToList();
 
         List<string> UpdateUserData = new List<string>();
         foreach (Customer user in Customer.UserList)
@@ -92,7 +90,7 @@ public class Customer
         }
         OldUserData.AddRange(UpdateUserData);
 
-        File.WriteAllLines("C:\\Users\\kalle\\source\\repos\\WebShop7\\data\\customerLogin.txt", OldUserData);
+        File.WriteAllLines("../../../customerLogin.txt", OldUserData);
     }
 
 }
