@@ -9,66 +9,8 @@ public class Admin
     public string name;
     public Admin(string Name) => Name = name;
 
-    public static void AddProduct()
-    {
-        bool newlisting = true;
-
-        while (newlisting)
-        {
-            Console.WriteLine("Type the name of the product you wish to add.");
-
-            string productTitle = Console.ReadLine();
-
-            Console.WriteLine("Type the price ($) of the product you wish to add.");
-
-            string productPrice = Console.ReadLine();
-
-            if (double.TryParse(productPrice, out double price))
-            {
-                // initierar objekt från StreamWriter (inbyggd klass m. string path som argument)
-                StreamWriter productEditor = File.AppendText("../../../data/products.txt");
-
-                // callar metoden WriteLine (skriver ny line till instansens path)
-                productEditor.WriteLine($"{productTitle}:${productPrice}");
-
-                // callar metoden Close (annars sparas inte ändringarna)
-                productEditor.Close();
-
-                Console.Clear();
-                Console.WriteLine();
-                Console.WriteLine("****************************");
-                Console.WriteLine("Listing successfully created.");
-                Console.WriteLine("****************************");
-                Console.WriteLine();
-
-                bool newProduct = true;
-
-                while (newProduct)
-                {
-                    Console.WriteLine("Would you like to add another listing? Y/N");
-                    string prompt = Console.ReadLine().ToLower();
-                    if (prompt == "y")
-                    {
-                        Console.Clear();
-                        newProduct = false;
-                    }
-                    else if (prompt == "n")
-                    {
-                        newlisting = false;
-                        newProduct = false;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Type \"n\" or \"y\"");
-                    }
-                }
-            }
-            else
-            {
-                Console.WriteLine("Invalid price, please use decimal number.");
-            }
-          
     public static void AdminMenu()
+
     {
         List<string> kläder = new List<string> { "hoodie", "byxor", "bag" };
 
@@ -77,10 +19,13 @@ public class Admin
             Console.Clear();
 
             Console.WriteLine("Welcome to the menu Admin:");
+            Console.WriteLine("*****************");
             Console.WriteLine("1. Add products");
             Console.WriteLine("2. Delete products");
-            Console.WriteLine("3. Redigera kundinformation");
-            Console.WriteLine("4. Översikt över alla Beställningar & Transaktioner");
+            Console.WriteLine("3. Edit customer info");
+            Console.WriteLine("4. View all orders");
+            Console.WriteLine("5. Back");
+            Console.WriteLine("*****************");
 
             Console.Write("Enter your choice: ");
             string choice = Console.ReadLine();
@@ -88,11 +33,12 @@ public class Admin
             if (choice == "1")
             {
                 Console.Clear();
+                Admin.AddProduct();
 
-                Console.WriteLine("What product would you like to add?");
-                string add = Console.ReadLine();
-                kläder.Add(add);
-                Console.WriteLine(add + " is now added to your products!");
+                //Console.WriteLine("What product would you like to add?");
+                //string add = Console.ReadLine();
+                //kläder.Add(add);
+                //Console.WriteLine(add + " is now added to your products!");
 
 
                 Thread.Sleep(800);
@@ -157,5 +103,56 @@ public class Admin
             }
         }
     }
-}
+    public static void AddProduct()
+    {
+        bool newlisting = true;
 
+        while (newlisting)
+        {
+            Console.WriteLine("Type the name of the product you wish to add.");
+
+            string productTitle = Console.ReadLine();
+
+            Console.WriteLine("Type the price ($) of the product you wish to add.");
+
+            string productPrice = Console.ReadLine();
+
+            if (double.TryParse(productPrice, out double price))
+            {
+                File.AppendAllText("../../../data/products.txt", $"{productTitle}:${productPrice}\n");
+                Console.Clear();
+                Console.WriteLine("****************************");
+                Console.WriteLine("Listing successfully created.");
+                Console.WriteLine("****************************");
+                Console.WriteLine();
+
+                bool newProduct = true;
+
+                while (newProduct)
+                {
+                    Console.Write("Would you like to add another listing? Y/N: ");
+                    string prompt = Console.ReadLine().ToLower();
+                    if (prompt == "y")
+                    {
+                        Console.Clear();
+                        newProduct = false;
+                    }
+                    else if (prompt == "n")
+                    {
+                        newlisting = false;
+                        newProduct = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Type \"n\" or \"y\"");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid price, please use decimal number.");
+            }
+        }
+
+    }
+}

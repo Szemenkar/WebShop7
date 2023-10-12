@@ -8,20 +8,22 @@
 
 public class Customer
     {
-    public string Username;
-    public string _password;
-    public string Email;
-
+    public string? Username;
+    private string? _password;
 
     public static List<Customer> UserList = new List<Customer>();
+
+    // Gör loop
+    // Kolla password & username length
+    // Inga whitespaces/null
+
     public static void Register()
     {
+
         Console.Clear();
         Customer user = new Customer();
         Console.WriteLine("Register an account.");
         Console.WriteLine("--------------------");
-        Console.Write("Email: ");
-        user.Email = Console.ReadLine();
 
         Console.Write("Username: ");
         user.Username = Console.ReadLine();
@@ -29,8 +31,10 @@ public class Customer
         Console.Write("Password: ");
         user._password = Console.ReadLine();
         UserList.Add(user);
+ 
 
         SaveCustomerData();
+        
     }
     public static void Login()
     {
@@ -45,13 +49,11 @@ public class Customer
 
         while (!loggedIn)
         {
-            string[] dataLines = File.ReadAllLines("../../../customerLogin.txt");
-
+            string[] dataLines = File.ReadAllLines("../../../data/customerLogin.txt");
             foreach (string userDataLine in dataLines)
             {
-                string[] userDataParts = userDataLine.Split(',');
-
-                if (userDataParts[1] == username && userDataParts[2] == password)
+                string[] userDataParts = userDataLine.Split(':');
+                if (userDataParts[0] == username && userDataParts[1] == password)
                 {
                     Console.WriteLine("Your successfully logged in.");
                     loggedIn = true;
@@ -81,16 +83,17 @@ public class Customer
     {
         List<string> OldUserData = new List<string>();
 
-        OldUserData = File.ReadAllLines("../../../customerLogin.txt").ToList();
+        OldUserData = File.ReadAllLines("../../../data/customerLogin.txt").ToList();
 
         List<string> UpdateUserData = new List<string>();
         foreach (Customer user in Customer.UserList)
         {
-            UpdateUserData.Add(user.Email + "," + user.Username + "," + user._password);
+            UpdateUserData.Add(user.Username + ":" + user._password);
         }
         OldUserData.AddRange(UpdateUserData);
 
-        File.WriteAllLines("../../../customerLogin.txt", OldUserData);
+        File.WriteAllLines("../../../data/customerLogin.txt", OldUserData);
+        // File.Create($"carts/{User}/cart.txt");
     }
 
 }
