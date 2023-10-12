@@ -10,15 +10,21 @@ public class Admin
     public Admin(string Name) => Name = name;
 
     public static void AdminMenu()
-
     {
-        List<string> kläder = new List<string> { "hoodie", "byxor", "bag" };
+        string[] products = File.ReadAllLines("../../../data/products.txt");
+
+        List<string> productlist = new List<string>();
+
+        for (int i = 0; i < products.Length; i++)
+        {
+            productlist.Add(products[i]);
+        }
 
         while (true)
         {
             Console.Clear();
 
-            Console.WriteLine("Welcome to the menu Admin:");
+            Console.WriteLine("Welcome to the Admin Menu:");
             Console.WriteLine("*****************");
             Console.WriteLine("1. Add products");
             Console.WriteLine("2. Delete products");
@@ -34,15 +40,9 @@ public class Admin
             {
                 Console.Clear();
                 Admin.AddProduct();
-
-                //Console.WriteLine("What product would you like to add?");
-                //string add = Console.ReadLine();
-                //kläder.Add(add);
-                //Console.WriteLine(add + " is now added to your products!");
-
-
-                Thread.Sleep(800);
-                Console.WriteLine("Press Enter to return to the main menu");
+                Thread.Sleep(1000);
+                Console.Clear();
+                Console.WriteLine("Press Enter to return to admin menu");
                 Console.ReadLine();
 
                 Console.Clear();
@@ -50,22 +50,19 @@ public class Admin
             else if (choice == "2")
             {
                 Console.Clear();
-
+                Products.fetchProducts();
                 Console.WriteLine("What products would you like to delete?");
 
-                for (int i = 0; i < kläder.Count; i++)
+                if (int.TryParse(Console.ReadLine(), out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= productlist.Count)
                 {
-                    Console.WriteLine($"{i + 1}. {kläder[i]}");
-                }
-
-                if (int.TryParse(Console.ReadLine(), out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= kläder.Count)
-                {
-                    string deletedProduct = kläder[selectedIndex - 1];
-                    kläder.RemoveAt(selectedIndex - 1);
+                    string deletedProduct = productlist[selectedIndex - 1];
+                    productlist.RemoveAt(selectedIndex - 1);
+                    
                     Console.WriteLine(deletedProduct + " Is now removed");
 
                     Thread.Sleep(1000);
-                    Console.WriteLine("Press Enter to return to the main menu");
+                    Console.Clear();
+                    Console.WriteLine("Press Enter to return to the admin menu");
                     Console.ReadLine();
                 }
                 else
@@ -96,6 +93,11 @@ public class Admin
                 Console.WriteLine("3.");
                 Console.WriteLine("4.");
             }
+            else if (choice == "5")
+            {
+                Console.Clear();
+                break;
+            }
             else
             {
                 Console.WriteLine("Incorrect choice. Press Enter to try again.");
@@ -119,7 +121,10 @@ public class Admin
 
             if (double.TryParse(productPrice, out double price))
             {
-                File.AppendAllText("../../../data/products.txt", $"{productTitle}:${productPrice}\n");
+                StreamWriter write = File.AppendText("../../../data/products.txt");
+                write.WriteLine($"{productTitle}:${productPrice}");
+                write.Close();
+
                 Console.Clear();
                 Console.WriteLine("****************************");
                 Console.WriteLine("Listing successfully created.");
@@ -155,4 +160,5 @@ public class Admin
         }
 
     }
+
 }

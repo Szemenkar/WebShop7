@@ -33,7 +33,7 @@ public class Customer
         UserList.Add(user);
  
 
-        SaveCustomerData();
+        user.SaveCustomerData();
         
     }
     public static void Login()
@@ -79,7 +79,7 @@ public class Customer
             }
         }
     }
-    public static void SaveCustomerData()
+    public void SaveCustomerData()
     {
         List<string> OldUserData = new List<string>();
 
@@ -93,7 +93,7 @@ public class Customer
         OldUserData.AddRange(UpdateUserData);
 
         File.WriteAllLines("../../../data/customerLogin.txt", OldUserData);
-        // File.Create($"carts/{User}/cart.txt");
+        // File.Create($"carts/{User}/.txt".Close());
     }
 
 }
