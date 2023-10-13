@@ -11,15 +11,6 @@ public class Admin
 
     public static void AdminMenu()
     {
-        string[] products = File.ReadAllLines("../../../data/products.txt");
-
-        List<string> productlist = new List<string>();
-
-        for (int i = 0; i < products.Length; i++)
-        {
-            productlist.Add(products[i]);
-        }
-
         while (true)
         {
             Console.Clear();
@@ -39,10 +30,15 @@ public class Admin
             if (choice == "1")
             {
                 Console.Clear();
+
                 Admin.AddProduct();
+
                 Thread.Sleep(1000);
+
                 Console.Clear();
+
                 Console.WriteLine("Press Enter to return to admin menu");
+
                 Console.ReadLine();
 
                 Console.Clear();
@@ -50,13 +46,15 @@ public class Admin
             else if (choice == "2")
             {
                 Console.Clear();
-                Products.fetchProducts();
+
+                Product.ShowAll();
+
                 Console.WriteLine("What products would you like to delete?");
 
-                if (int.TryParse(Console.ReadLine(), out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= productlist.Count)
+                if (int.TryParse(Console.ReadLine(), out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= Product.list.Count)
                 {
-                    string deletedProduct = productlist[selectedIndex - 1];
-                    productlist.RemoveAt(selectedIndex - 1);
+                    string deletedProduct = Product.list[selectedIndex -1];
+                    Product.Delete(deletedProduct);
                     
                     Console.WriteLine(deletedProduct + " Is now removed");
 
@@ -108,7 +106,7 @@ public class Admin
     public static void AddProduct()
     {
         bool newlisting = true;
-
+        Product.Get();
         while (newlisting)
         {
             Console.WriteLine("Type the name of the product you wish to add.");
