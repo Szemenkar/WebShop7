@@ -15,7 +15,6 @@ foreach (var line in title)
 }
 Console.ReadKey();
 Console.Clear();
-Console.WriteLine();
 
 // Init
 
@@ -31,6 +30,7 @@ do
         case "1":
             Customer.Login();
             Cart.AddToCart();
+            Cart.RemoveFromCart();
             break;
         case "2":
             Customer.Register();
