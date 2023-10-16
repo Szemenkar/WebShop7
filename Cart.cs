@@ -63,6 +63,7 @@ public class Cart
             }
         }
     }
+
     public static void RemoveFromCart()
     {
         Console.Clear();
@@ -70,11 +71,11 @@ public class Cart
         bool removeItemQuestion = true;
         bool removeItem = true;
 
-        while (removeItemQuestion)
+        while (removeItemQuestion && shoppingCart.Count >= 1)
         {
             Console.WriteLine("Would you like to remove an item from the cart? Y/N");
             string input = Console.ReadLine().ToLower();
-            if (input == "y")
+            if (input == "y" && shoppingCart.Count >= 1)
             {
                 int count = 1;
                 Console.Clear();
@@ -96,12 +97,12 @@ public class Cart
             else
             {
                 Console.WriteLine("Type 'Y' or 'N'");
+                removeItem = false;
             }
 
-
-            while (removeItem)
+            while (removeItem && shoppingCart.Count >= 1)
             {
-                Console.Write("Type which of the products you would like to remove from the cart: ");
+                Console.Write("\nType which of the products you would like to remove from the cart: ");
                 string removeInput = Console.ReadLine();
                 if (int.TryParse(removeInput, out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= shoppingCart.Count)
                 {
@@ -113,7 +114,7 @@ public class Cart
                 }
                 else
                 {
-                    Console.Write("Invalid input.");
+                    Console.WriteLine("Invalid input.");
                 }
             }
         }
