@@ -55,7 +55,7 @@ public class Customer
                 string[] userDataParts = userDataLine.Split(':');
                 if (userDataParts[0] == username && userDataParts[1] == password)
                 {
-                    Console.WriteLine("Your successfully logged in.");
+                    Console.WriteLine("You successfully logged in.");
                     loggedIn = true;
                     break;
                 }

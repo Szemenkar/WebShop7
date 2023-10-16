@@ -30,6 +30,7 @@ do
     {
         case "1":
             Customer.Login();
+            Cart.AddToCart();
             break;
         case "2":
             Customer.Register();

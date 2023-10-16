@@ -13,7 +13,8 @@ public class Product
 
         foreach (var product in list)
         {
-            Console.WriteLine($"{indexer}. {product}");
+            string[] items = product.Split(":");
+            Console.WriteLine($"{indexer}. {items[0]} costs {items[1]}");
             indexer++;
         }
     }
