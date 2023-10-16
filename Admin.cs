@@ -11,6 +11,38 @@ public class Admin
 
     public static void AdminMenu()
     {
+        Console.Write("Admin username: ");
+        string username = Console.ReadLine();
+        Console.Write("Admin password: ");
+        string password = Console.ReadLine();
+
+        bool adminLogin = true;
+
+        while (adminLogin)
+        {
+            string[] adminInformation = File.ReadAllLines("../../../data/adminLogin.txt");
+            foreach (string item in adminInformation)
+            {
+                string[] admin = item.Split(':');
+                if (admin[0] == username && admin[1] == password)
+                {
+                    Console.WriteLine("You successfully logged in.");
+                    adminLogin = false;
+                    break;
+                }
+            }
+
+            if (adminLogin)
+            {
+                Console.WriteLine("Your username or password is invalid. Try again.");
+                Console.Write("Admin username: ");
+                username = Console.ReadLine();
+                Console.Write("Admin password: ");
+                password = Console.ReadLine();
+                adminLogin = true;
+            }
+        }
+
         while (true)
         {
             Console.Clear();
@@ -32,8 +64,6 @@ public class Admin
                 Console.Clear();
 
                 Admin.AddProduct();
-
-                Thread.Sleep(1000);
 
                 Console.Clear();
 
@@ -58,7 +88,6 @@ public class Admin
                     
                     Console.WriteLine(deletedProduct + " Is now removed");
 
-                    Thread.Sleep(1000);
                     Console.Clear();
                     Console.WriteLine("Press Enter to return to the admin menu");
                     Console.ReadLine();

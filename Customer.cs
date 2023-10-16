@@ -57,6 +57,7 @@ public class Customer
                 {
                     Console.WriteLine("You successfully logged in.");
                     loggedIn = true;
+                    File.Create($"../../../carts/{username}.txt").Close();
                     break;
                 }
             }
@@ -70,6 +71,7 @@ public class Customer
                 if (answerLorR == "l")
                 {
                     Login();
+                    loggedIn = true;
                 }
                 if (answerLorR == "r")
                 {
@@ -93,7 +95,6 @@ public class Customer
         OldUserData.AddRange(UpdateUserData);
 
         File.WriteAllLines("../../../data/customerLogin.txt", OldUserData);
-        // File.Create($"carts/{User}/.txt".Close());
     }
 
 }
