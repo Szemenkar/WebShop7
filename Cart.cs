@@ -25,6 +25,7 @@ public class Cart
             Product.ShowAll();
             while (searchingForItems)
             {
+                Console.WriteLine("---------------------------------------");
                 Console.Write("\nType which product you would like to add to your cart: ");
                 bool choosingItem = true;
                 string? orderInput = Console.ReadLine();
@@ -35,12 +36,14 @@ public class Cart
                         string addedProduct = Product.list[selectedIndex - 1];
                         Console.WriteLine("\nYou've succesfully added that item to your cart!");
                         shoppingCart.Add(addedProduct);
-                        Console.WriteLine("\nThese items are currently in your shopping cart:");
+                        Console.WriteLine("\n--------------------------------------");
+                        Console.WriteLine("These items are currently in your shopping cart:");
                         foreach (string item in shoppingCart)
                         {
                             string[] items = item.Split(":");
                             Console.WriteLine($"{items[0]} ({items[1]})");
                         }
+                        Console.WriteLine("--------------------------------------");
                         choosingItem = false;
                     }
                     else
@@ -84,17 +87,13 @@ public class Cart
     {
         Console.Clear();
 
-        bool removeItemQuestion = true;
         bool removeItem = true;
-
-        while (removeItemQuestion && shoppingCart.Count >= 1)
+        bool showItem = true;
+        while (showItem && shoppingCart.Count >= 1)
         {
-            Console.WriteLine("Would you like to remove an item from the cart? Y/N");
-            string? input = Console.ReadLine().ToLower();
-            if (input == "y" && shoppingCart.Count >= 1)
+            if (shoppingCart.Count >= 1)
             {
                 int count = 1;
-                Console.Clear();
                 Console.WriteLine("These are the products in your shopping cart: ");
                 foreach (string item in shoppingCart)
                 {
@@ -102,20 +101,9 @@ public class Cart
                     Console.WriteLine($"{count}. {items[0]} ({items[1]})");
                     count++;
                 }
-                removeItemQuestion = false;
+                showItem = false;
                 removeItem = true;
             }
-            else if (input == "n")
-            {
-                removeItemQuestion = false;
-                removeItem = false;
-            }
-            else
-            {
-                Console.WriteLine("Type 'Y' or 'N'");
-                removeItem = false;
-            }
-
             while (removeItem && shoppingCart.Count >= 1)
             {
                 Console.Write("\nType which of the products you would like to remove from the cart: ");
@@ -125,29 +113,36 @@ public class Cart
                     string? removedProduct = shoppingCart[selectedIndex - 1];
                     shoppingCart.Remove(removedProduct);
                     int index = removedProduct.IndexOf(":");
-                    string? temp = removedProduct.Substring(0, index);
-                    Console.WriteLine("\nYou've removed 1 " + temp + " from your cart.");
+                    string temp = removedProduct.Substring(0, index);
+                    Console.Clear();
+                    Console.WriteLine("You've removed 1 " + temp + " from your cart.");
+                    Console.WriteLine("-------------------------------------------------");
                     removeItem = false;
-                    removeItemQuestion = true;
+                    showItem = true;
                 }
                 else
                 {
-                    Console.WriteLine("Invalid input.");
+                    Console.Write("\nInvalid input. Type one of the options above.\n");
                 }
             }
+        }
 
-            while (shoppingCart.Count == 0)
-            {
-                Console.WriteLine("\nYou don't have any items in your shopping cart\nPress any key to continue.");
-                Console.ReadKey();
-                break;
-            }
+        if (shoppingCart.Count == 0)
+        {
+            Console.WriteLine("You don't have any items in your shopping cart\nPress any key to continue.");
+            Console.ReadKey();
         }
     }
 
     public static void ViewCart()
     {
         bool viewing = true;
+        if (shoppingCart.Count == 0)
+        {
+            Console.WriteLine("Your shopping cart is empty.\nPress any key to continue");
+            Console.ReadKey();
+            viewing = false;
+        }
         while (viewing)
         {
             Console.Clear();
@@ -159,7 +154,7 @@ public class Cart
                 Console.WriteLine($"{count}. {items[0]}");
                 count++;
             }
-            Console.WriteLine("Press any key to continue");
+            Console.Write("\nPress any key to continue");
             Console.ReadKey();
             break;
         }

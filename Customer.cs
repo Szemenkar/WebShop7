@@ -114,6 +114,9 @@ public class Customer
         {
             Console.WriteLine(item);
         }
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine("Press any key to go back to the menu");
+        Console.ReadKey();
     }
 }
 

@@ -6,15 +6,18 @@ public class Checkout
 
     public static void DisplayOrder()
     {
-
         Console.Clear();
-        Console.WriteLine("***********");
         Console.WriteLine("Your order:");
-        Console.WriteLine("***********");
-        Cart.ViewCart();
         Console.WriteLine();
 
         order = Cart.shoppingCart;
+
+        foreach (var product in order)
+        {
+            string[] items = product.Split(":");
+            Console.WriteLine($"{items[0]} ({items[1]})");
+        }
+        Console.WriteLine("---------------------------------\n");
 
         foreach (var product in order)
         {
@@ -29,21 +32,22 @@ public class Checkout
                 Console.WriteLine("Product price not found");
             }
         }
-        Console.WriteLine("Order total: " + Math.Round(total, 2));
-
-        Console.WriteLine("1. Checkout\n2. Cancel Order");
+        Console.WriteLine("Order total: $" + Math.Round(total, 2));
+        Console.WriteLine("---------------------");
+        Console.WriteLine("\n1. Checkout\n2. Cancel Order");
 
         switch (Console.ReadLine())
         {
             case "1":
                 Console.Clear();
-                Console.WriteLine("Your order has been completed and will be delivered in two minutes");
+                Console.WriteLine("Your order has been completed! Press any key to continue.");
                 Save();
                 Cart.shoppingCart.Clear();
                 total = 0;
                 Console.ReadKey();
                 break;
             case "2":
+                total = 0;
                 break;
             default: Console.WriteLine("Invalid input");
                 break;
