@@ -11,56 +11,65 @@ public class Cart
         Product.ShowAll();
 
         bool searchingForItems = true;
+        Console.WriteLine("1. Add products to cart\n2. Go back to menu");
+        string menuInput = Console.ReadLine();
 
-        while (searchingForItems)
+        if (menuInput == "1")
         {
-            Console.Write("\nType which product you would like to add to your cart: ");
-            bool choosingItem = true;
-            string orderInput = Console.ReadLine();
-            while (choosingItem)
+            while (searchingForItems)
             {
-                if (int.TryParse(orderInput, out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= Product.list.Count)
+                Console.Write("\nType which product you would like to add to your cart: ");
+                bool choosingItem = true;
+                string orderInput = Console.ReadLine();
+                while (choosingItem)
                 {
-                    string addedProduct = Product.list[selectedIndex - 1];
-                    Console.WriteLine("\nYou've succesfully added that item to your cart!");
-                    shoppingCart.Add(addedProduct);
-                    Console.WriteLine("\nThese items are currently in your shopping cart:");
-                    foreach (string item in shoppingCart)
+                    if (int.TryParse(orderInput, out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= Product.list.Count)
                     {
-                        string[] items = item.Split(":");
-                        Console.WriteLine($"{items[0]} ({items[1]})");
+                        string addedProduct = Product.list[selectedIndex - 1];
+                        Console.WriteLine("\nYou've succesfully added that item to your cart!");
+                        shoppingCart.Add(addedProduct);
+                        Console.WriteLine("\nThese items are currently in your shopping cart:");
+                        foreach (string item in shoppingCart)
+                        {
+                            string[] items = item.Split(":");
+                            Console.WriteLine($"{items[0]} ({items[1]})");
+                        }
+                        choosingItem = false;
                     }
-                    choosingItem = false;
+                    else
+                    {
+                        Console.Write("You must write one of the options above: ");
+                        orderInput = Console.ReadLine();
+                    }
                 }
-                else
+
+                bool newItem = true;
+
+                while (newItem)
                 {
-                    Console.Write("You must write one of the options above: ");
-                    orderInput = Console.ReadLine();
+                    Console.WriteLine("\nWould you like to add more items to the cart? Y/N");
+                    string input = Console.ReadLine().ToLower();
+                    if (input == "y")
+                    {
+                        Console.Clear();
+                        Product.ShowAll();
+                        newItem = false;
+                    }
+                    else if (input == "n")
+                    {
+                        searchingForItems = false;
+                        newItem = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Type 'Y' or 'N'");
+                    }
                 }
             }
-
-            bool newItem = true;
-
-            while (newItem)
-            {
-                Console.WriteLine("\nWould you like to add more items to the cart? Y/N");
-                string input = Console.ReadLine().ToLower();
-                if (input == "y")
-                {
-                    Console.Clear();
-                    Product.ShowAll();
-                    newItem = false;
-                }
-                else if (input == "n")
-                {
-                    searchingForItems = false;
-                    newItem = false;
-                }
-                else
-                {
-                    Console.WriteLine("Type 'Y' or 'N'");
-                }
-            }
+        }
+        else if (menuInput == "2")
+        {
+            Customer.CustomerMenu();
         }
     }
 
