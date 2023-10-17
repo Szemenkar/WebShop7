@@ -8,13 +8,13 @@ public class Menus
 
         do
         {
-            Console.WriteLine("Welcome to Apparel 7\n1.Login as Customer\n2.Register new Customer\n3.Login as Admin");
+            Console.WriteLine("Welcome to Apparel 7\n\n1.Login as Customer\n2.Register new Customer\n3.Login as Admin");
 
             Console.WriteLine();
 
             Console.Write("Enter choice: ");
 
-            string input = Console.ReadLine();
+            string? input = Console.ReadLine();
 
             switch (input)
             {
@@ -29,12 +29,10 @@ public class Menus
                 case "3":
                     Console.Clear();
                     Admin.AdminMenu();
-
                     break;
                 default:
                     Console.Clear();
                     Console.WriteLine("Invalid input");
-
                     break;
             }
         } while (init);
@@ -49,9 +47,10 @@ public class Menus
             Console.WriteLine("-------------");
             Console.WriteLine("1. Browse Store");
             Console.WriteLine("2. View Cart");
-            Console.WriteLine("3. Order History");
-            Console.WriteLine("4. Checkout");
-            Console.WriteLine("5. Logout");
+            Console.WriteLine("3. Remove Item From Cart");
+            Console.WriteLine("4. Order History");
+            Console.WriteLine("5. Checkout");
+            Console.WriteLine("6. Logout");
 
             string? customerInput = Console.ReadLine();
 
@@ -64,23 +63,25 @@ public class Menus
             {
                 Console.Clear();
                 Cart.ViewCart();
-                Cart.RemoveFromCart();
             }
             else if (customerInput == "3")
             {
-                Customer.OrderHistory();
-                Console.ReadKey();
+                Cart.RemoveFromCart();
             }
             else if (customerInput == "4")
             {
-                Console.WriteLine("HEJ");
-                Console.Clear();
-                Checkout.DisplayOrder();
+                Customer.OrderHistory();
             }
             else if (customerInput == "5")
             {
                 Console.Clear();
+                Checkout.DisplayOrder();
+            }
+            else if (customerInput == "6")
+            {
+                Console.Clear();
                 Customer.UserList.Clear();
+                Cart.shoppingCart.Clear();
                 break;
             }
             else

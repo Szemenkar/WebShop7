@@ -109,6 +109,8 @@ public class Customer
         {
             Console.WriteLine(item);
         }
+        Console.WriteLine("Press any key to go back");
+        Console.ReadKey();
     }
 }
 

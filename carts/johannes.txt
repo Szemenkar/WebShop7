@@ -63,3 +63,26 @@ Recycled Hipster Beanie:$99,99
 Total sum: $169,88
 
 
+
+2023-10-17 17:18:01
+
+Cart:
+*****************************
+
+Wrinkly Summer Jacket:$16
+Armless Winter Jacket:$19,90
+
+*****************************
+Total sum: $51,9
+
+
+2023-10-17 17:45:38
+
+Cart:
+*****************************
+
+Wrinkly Summer Jacket:$16,00
+
+*****************************
+Total sum: $16
+

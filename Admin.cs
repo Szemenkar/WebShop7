@@ -45,13 +45,13 @@ public class Admin
             Console.Clear();
 
             Console.WriteLine("Welcome to the Admin Menu:");
-            Console.WriteLine("*****************");
+            Console.WriteLine("-----------------------");
             Console.WriteLine("1. Add products");
             Console.WriteLine("2. Delete products");
             Console.WriteLine("3. Edit customer info");
             Console.WriteLine("4. View all orders");
             Console.WriteLine("5. Back");
-            Console.WriteLine("*****************");
+            Console.WriteLine("-----------------------");
 
             Console.Write("Enter your choice: ");
             string choice = Console.ReadLine();
@@ -119,7 +119,7 @@ public class Admin
                         if (int.TryParse(Console.ReadLine(), out int editChoice) && (editChoice == 1 || editChoice == 2))
                         {
                             Console.Write("Enter the updated information: ");
-                            string updatedInfo = Console.ReadLine();
+                            string? updatedInfo = Console.ReadLine();
 
                             // efter ändringen ska det sparas
                             string[] customerData = info[customerIndex - 1].Split(':');
@@ -146,9 +146,8 @@ public class Admin
 
                             // uppdaterar ändringen till filen
                             File.WriteAllLines("../../../data/customerLogin.txt", info);
-
                             Console.WriteLine("Customer information updated successfully.");
-                            Console.WriteLine("Press any key to continue...");
+                            Console.WriteLine("Press any key to continue");
                             Console.ReadKey();
                         }
                         else
@@ -179,7 +178,7 @@ public class Admin
             }
         }
     }
-
+    /*
     public static string[] AllOrders()
     {
         string username = string.Empty;
@@ -197,7 +196,7 @@ public class Admin
 
         return newArray;
     }
-
+    */
     public static void AddProduct()
     {
         bool newlisting = true;
