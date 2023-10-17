@@ -7,7 +7,7 @@
 // Se sin egen köphistorik
 
 public class Customer
-    {
+{
     public string? Username;
     private string? _password;
 
@@ -19,11 +19,11 @@ public class Customer
 
     public static void Register()
     {
-
-        Console.Clear();
         Customer user = new Customer();
+        Console.Clear();
+        Console.WriteLine("-------------------");
         Console.WriteLine("Register an account.");
-        Console.WriteLine("--------------------");
+        Console.WriteLine("-------------------");
 
         Console.Write("Username: ");
         user.Username = Console.ReadLine();
@@ -31,20 +31,24 @@ public class Customer
         Console.Write("Password: ");
         user._password = Console.ReadLine();
         UserList.Add(user);
- 
+
+        File.Create($"../../../userdata/{user.Username}.txt").Close();
 
         user.SaveCustomerData();
-        
+
+        Console.Clear();
+
     }
     public static void Login()
     {
         Console.Clear();
+        Console.WriteLine("----------------------");
         Console.WriteLine("Login to your account.");
         Console.WriteLine("----------------------");
         Console.Write("Username: ");
-        string username = Console.ReadLine();
+        string? username = Console.ReadLine();
         Console.Write("Password: ");
-        string password = Console.ReadLine();
+        string? password = Console.ReadLine();
         bool loggedIn = false;
 
         while (!loggedIn)
@@ -55,10 +59,12 @@ public class Customer
                 string[] userDataParts = userDataLine.Split(':');
                 if (userDataParts[0] == username && userDataParts[1] == password)
                 {
+                    Customer user = new Customer();
                     Console.WriteLine("You successfully logged in.");
+                    user.Username = userDataParts[0];
+                    UserList.Add(user);
                     loggedIn = true;
-                    File.Create($"../../../carts/{username}.txt").Close();
-                    break;
+                    Menus.CustomerMenu();
                 }
             }
 
@@ -67,7 +73,7 @@ public class Customer
                 Console.WriteLine("Your username or password is invalid.");
                 Console.WriteLine("Try to Login again or Register an account.");
                 Console.WriteLine("Answer with L or R");
-                string answerLorR = Console.ReadLine().ToLower();
+                string? answerLorR = Console.ReadLine().ToLower();
                 if (answerLorR == "l")
                 {
                     Login();
@@ -97,5 +103,20 @@ public class Customer
         File.WriteAllLines("../../../data/customerLogin.txt", OldUserData);
     }
 
+    public static void OrderHistory()
+    {
+        Console.WriteLine("-------------");
+        Console.WriteLine("Order History");
+        Console.WriteLine("-------------");
+        Console.Clear();
+        string[] history = File.ReadAllLines($"../../../userdata/{UserList[0].Username}.txt");
+        foreach (var item in history)
+        {
+            Console.WriteLine(item);
+        }
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine("Press any key to go back to the menu");
+        Console.ReadKey();
+    }
 }
 
