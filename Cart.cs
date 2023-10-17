@@ -8,7 +8,6 @@ public class Cart
     public static void AddToCart()
     {
         Console.Clear();
-        Product.ShowAll();
 
         bool searchingForItems = true;
         Console.WriteLine("1. Add products to cart\n2. Go back to menu");
@@ -16,14 +15,9 @@ public class Cart
 
         if (menuInput == "1")
         {
+            Product.ShowAll();
 
             while (searchingForItems)
-
-            Console.Write("\nType which product you would like to add to your cart: ");
-            bool choosingItem = true;
-            string? orderInput = Console.ReadLine();
-            while (choosingItem)
-
             {
                 Console.Write("\nType which product you would like to add to your cart: ");
                 bool choosingItem = true;

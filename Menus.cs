@@ -21,9 +21,6 @@ public class Menus
                 case "1":
                     Console.Clear();
                     Customer.Login();
-                    // Menu
-                    //Cart.AddToCart();
-                    //Cart.RemoveFromCart();
                     break;
                 case "2":
                     Console.Clear();
