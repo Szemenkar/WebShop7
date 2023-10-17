@@ -5,7 +5,9 @@ public class Checkout
     public static void DisplayOrder()
     {
         Console.Clear();
+        Console.WriteLine("***********");
         Console.WriteLine("Your order:");
+        Console.WriteLine("***********");
         Cart.ViewCart();
         Console.WriteLine();
 
