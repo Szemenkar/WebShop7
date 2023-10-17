@@ -1,6 +1,6 @@
 // Apparel 7
 
-// Användarinfo -- /data/customerLogin.txt 
+// Användarinfo -- /data/customerLogin.txt
 // Admininfo -- /data/adminLogin.txt
 // Produktinfo -- /data/products.txt
 // Kvitton -- /data/receipts.txt
@@ -15,3 +15,4 @@ Console.ReadKey();
 Console.Clear();
 
 Menus.MainMenu();
+
