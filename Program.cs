@@ -29,6 +29,7 @@ do
     {
         case "1":
             Customer.Login();
+            // Menu
             Cart.AddToCart();
             Cart.RemoveFromCart();
             break;
