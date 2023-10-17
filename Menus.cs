@@ -8,13 +8,16 @@ public class Menus
 
         do
         {
-            Console.WriteLine("Welcome to Apparel 7\n1.Login as Customer\n2.Register new Customer\n3.Login as Admin");
+            Console.WriteLine("--------------------");
+            Console.WriteLine("Welcome to Apparel 7");
+            Console.WriteLine("--------------------");
+            Console.WriteLine("1.Login as Customer\n2.Register new Customer\n3.Login as Admin");
 
             Console.WriteLine();
 
             Console.Write("Enter choice: ");
 
-            string input = Console.ReadLine();
+            string? input = Console.ReadLine();
 
             switch (input)
             {
@@ -45,6 +48,7 @@ public class Menus
         while (true)
         {
             Console.Clear();
+            Console.WriteLine("-------------");
             Console.WriteLine("Customer Menu");
             Console.WriteLine("-------------");
             Console.WriteLine("1. Browse Store");
@@ -73,7 +77,6 @@ public class Menus
             }
             else if (customerInput == "4")
             {
-                Console.WriteLine("HEJ");
                 Console.Clear();
                 Checkout.DisplayOrder();
             }

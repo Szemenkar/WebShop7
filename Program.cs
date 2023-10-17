@@ -11,10 +11,9 @@ foreach (var line in title)
 {
     Console.WriteLine(line);
 }
+Console.WriteLine("Press any key to continue...");
 Console.ReadKey();
 Console.Clear();
-
-Admin.AllOrders();
 
 Menus.MainMenu();
 

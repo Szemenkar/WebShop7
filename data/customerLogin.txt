@@ -1,10 +1,5 @@
 valle:123
 johannes:12345
-valle:123
-johannes:12345
-valle:123
-johannes:12345
-valle:123
-johannes:12345
-valle:123
-johannes:12345
+demo1:demopassword1
+demo2:demopassword2
+demo3:demopassword3

@@ -9,9 +9,9 @@ public class Admin
     public static void AdminMenu()
     {
         Console.Write("Admin username: ");
-        string username = Console.ReadLine();
+        string? username = Console.ReadLine();
         Console.Write("Admin password: ");
-        string password = Console.ReadLine();
+        string? password = Console.ReadLine();
 
         bool adminLogin = true;
 
@@ -43,18 +43,18 @@ public class Admin
         while (true)
         {
             Console.Clear();
-
-            Console.WriteLine("Welcome to the Admin Menu:");
-            Console.WriteLine("*****************");
+            Console.WriteLine("----------");
+            Console.WriteLine("Admin Menu:");
+            Console.WriteLine("----------"); ;
             Console.WriteLine("1. Add products");
             Console.WriteLine("2. Delete products");
             Console.WriteLine("3. Edit customer info");
             Console.WriteLine("4. View all orders");
             Console.WriteLine("5. Back");
-            Console.WriteLine("*****************");
+            Console.WriteLine();
 
             Console.Write("Enter your choice: ");
-            string choice = Console.ReadLine();
+            string? choice = Console.ReadLine();
             Console.Clear();
 
             if (choice == "1")
@@ -81,10 +81,10 @@ public class Admin
 
                 if (int.TryParse(Console.ReadLine(), out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= Product.list.Count)
                 {
-                    string deletedProduct = Product.list[selectedIndex -1];
+                    string deletedProduct = Product.list[selectedIndex - 1];
                     Product.Delete(deletedProduct);
-                    
-                    Console.WriteLine(deletedProduct + " is now removed");
+
+                    Console.WriteLine(deletedProduct + " has been deleted");
 
                     Console.Clear();
                     Console.WriteLine("Press Enter to return to the admin menu");
@@ -119,7 +119,7 @@ public class Admin
                         if (int.TryParse(Console.ReadLine(), out int editChoice) && (editChoice == 1 || editChoice == 2))
                         {
                             Console.Write("Enter the updated information: ");
-                            string updatedInfo = Console.ReadLine();
+                            string? updatedInfo = Console.ReadLine();
 
                             // efter ändringen ska det sparas
                             string[] customerData = info[customerIndex - 1].Split(':');
@@ -147,25 +147,25 @@ public class Admin
                             // uppdaterar ändringen till filen
                             File.WriteAllLines("../../../data/customerLogin.txt", info);
 
-                            Console.WriteLine("Customer information updated successfully.");
+                            Console.WriteLine("Customer information updated");
                             Console.WriteLine("Press any key to continue...");
                             Console.ReadKey();
                         }
                         else
                         {
-                            Console.WriteLine("Invalid choice for what to edit.");
+                            Console.WriteLine("Invalid choice");
                         }
                     }
                     else
                     {
-                        Console.WriteLine("Invalid customer selection.");
+                        Console.WriteLine("No such customer");
                     }
                 }
 
             }
             else if (choice == "4")
             {
-                
+                Admin.OrderHistory();
             }
             else if (choice == "5")
             {
@@ -180,23 +180,62 @@ public class Admin
         }
     }
 
-    public static string[] AllOrders()
+    public static void OrderHistory()
     {
-        string username = string.Empty;
         string[] allCustomers = File.ReadAllLines("../../../data/customerLogin.txt");
-        string[] newArray = { };
+
+        List<string> Usernames = new();
+
         foreach (var item in allCustomers)
         {
-            string[] items = item.Split(":");
-            for (int i = 0; i < items.Length; i+=2)
+            string[] Userfile = item.Split(":");
+            for (int i = 0; i < Userfile.Length; i += 2)
             {
-                Console.WriteLine(items[i]);
-                newArray[i] += items[i];
+                Usernames.Add(Userfile[i]);
             }
         }
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("----------------");
+            Console.WriteLine("List of users:");
+            Console.WriteLine("----------------");
 
-        return newArray;
+            foreach (var user in Usernames)
+            {
+                Console.WriteLine(user);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Type the name of a user to view their order history\nType 'back' to go back");
+
+            string? input = Console.ReadLine();
+            if (input == "back")
+            {
+                Console.Clear();
+                break;
+            }
+            else if (File.Exists($"../../../userdata/{input}.txt"))
+            {
+                Console.Clear();
+                string[] history = File.ReadAllLines($"../../../userdata/{input}.txt");
+                foreach (var item in history)
+                {
+                    Console.WriteLine(item);
+                }
+                Console.WriteLine("Press any key to return");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("No order history for user " + input);
+                Console.WriteLine();
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+        }
     }
+
 
     public static void AddProduct()
     {
@@ -206,11 +245,11 @@ public class Admin
         {
             Console.WriteLine("Type the name of the product you wish to add.");
 
-            string productTitle = Console.ReadLine();
+            string? productTitle = Console.ReadLine();
 
             Console.WriteLine("Type the price ($) of the product you wish to add.");
 
-            string productPrice = Console.ReadLine();
+            string? productPrice = Console.ReadLine();
 
             if (double.TryParse(productPrice, out double price))
             {
@@ -229,7 +268,7 @@ public class Admin
                 while (newProduct)
                 {
                     Console.Write("Would you like to add another listing? Y/N: ");
-                    string prompt = Console.ReadLine().ToLower();
+                    string? prompt = Console.ReadLine().ToLower();
                     if (prompt == "y")
                     {
                         Console.Clear();

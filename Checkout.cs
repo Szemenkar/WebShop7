@@ -45,15 +45,16 @@ public class Checkout
                 break;
             case "2":
                 break;
+            default: Console.WriteLine("Invalid input");
+                break;
 
         }
     }
 
     public static void Save()
     {
-
-        File.ReadAllLines($"../../../carts/{Customer.UserList[0].Username}.txt");
-        StreamWriter write = File.AppendText($"../../../carts/{Customer.UserList[0].Username}.txt");
+        File.ReadAllLines($"../../../userdata/{Customer.UserList[0].Username}.txt");
+        StreamWriter write = File.AppendText($"../../../userdata/{Customer.UserList[0].Username}.txt");
 
         write.WriteLine($"\n{DateTime.Now.ToString()}\n\nCart:\n*****************************\n");
         
@@ -61,7 +62,9 @@ public class Checkout
         {
             write.WriteLine(Cart.shoppingCart[i]);
         }
+
         write.WriteLine($"\n*****************************\nTotal sum: ${Math.Round(total, 2)}\n");
+
         write.Close();
     }
 }

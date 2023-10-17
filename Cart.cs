@@ -17,7 +17,7 @@ public class Cart
         Console.WriteLine("-------------------------------");
         bool searchingForItems = true;
         Console.WriteLine("\n1. Add products to cart\n2. Go back to menu");
-        string menuInput = Console.ReadLine();
+        string? menuInput = Console.ReadLine();
 
         if (menuInput == "1")
         {
@@ -27,7 +27,7 @@ public class Cart
             {
                 Console.Write("\nType which product you would like to add to your cart: ");
                 bool choosingItem = true;
-                string orderInput = Console.ReadLine();
+                string? orderInput = Console.ReadLine();
                 while (choosingItem)
                 {
                     if (int.TryParse(orderInput, out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= Product.list.Count)
@@ -55,7 +55,7 @@ public class Cart
                 while (newItem)
                 {
                     Console.WriteLine("\nWould you like to add more items to the cart? Y/N");
-                    string input = Console.ReadLine().ToLower();
+                    string? input = Console.ReadLine().ToLower();
                     if (input == "y")
                     {
                         Console.Clear();
@@ -119,13 +119,13 @@ public class Cart
             while (removeItem && shoppingCart.Count >= 1)
             {
                 Console.Write("\nType which of the products you would like to remove from the cart: ");
-                string removeInput = Console.ReadLine();
+                string? removeInput = Console.ReadLine();
                 if (int.TryParse(removeInput, out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= shoppingCart.Count)
                 {
-                    string removedProduct = shoppingCart[selectedIndex - 1];
+                    string? removedProduct = shoppingCart[selectedIndex - 1];
                     shoppingCart.Remove(removedProduct);
                     int index = removedProduct.IndexOf(":");
-                    string temp = removedProduct.Substring(0, index);
+                    string? temp = removedProduct.Substring(0, index);
                     Console.WriteLine("\nYou've removed 1 " + temp + " from your cart.");
                     removeItem = false;
                     removeItemQuestion = true;

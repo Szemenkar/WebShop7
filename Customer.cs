@@ -21,8 +21,9 @@ public class Customer
     {
         Customer user = new Customer();
         Console.Clear();
+        Console.WriteLine("-------------------");
         Console.WriteLine("Register an account.");
-        Console.WriteLine("--------------------");
+        Console.WriteLine("-------------------");
 
         Console.Write("Username: ");
         user.Username = Console.ReadLine();
@@ -31,7 +32,7 @@ public class Customer
         user._password = Console.ReadLine();
         UserList.Add(user);
 
-        File.Create($"../../../carts/{user.Username}.txt").Close();
+        File.Create($"../../../userdata/{user.Username}.txt").Close();
 
         user.SaveCustomerData();
 
@@ -41,12 +42,13 @@ public class Customer
     public static void Login()
     {
         Console.Clear();
+        Console.WriteLine("----------------------");
         Console.WriteLine("Login to your account.");
         Console.WriteLine("----------------------");
         Console.Write("Username: ");
-        string username = Console.ReadLine();
+        string? username = Console.ReadLine();
         Console.Write("Password: ");
-        string password = Console.ReadLine();
+        string? password = Console.ReadLine();
         bool loggedIn = false;
 
         while (!loggedIn)
@@ -71,7 +73,7 @@ public class Customer
                 Console.WriteLine("Your username or password is invalid.");
                 Console.WriteLine("Try to Login again or Register an account.");
                 Console.WriteLine("Answer with L or R");
-                string answerLorR = Console.ReadLine().ToLower();
+                string? answerLorR = Console.ReadLine().ToLower();
                 if (answerLorR == "l")
                 {
                     Login();
@@ -103,8 +105,11 @@ public class Customer
 
     public static void OrderHistory()
     {
+        Console.WriteLine("-------------");
+        Console.WriteLine("Order History");
+        Console.WriteLine("-------------");
         Console.Clear();
-        string[] history = File.ReadAllLines($"../../../carts/{UserList[0].Username}.txt");
+        string[] history = File.ReadAllLines($"../../../userdata/{UserList[0].Username}.txt");
         foreach (var item in history)
         {
             Console.WriteLine(item);
