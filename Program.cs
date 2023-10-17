@@ -1,6 +1,6 @@
 // Apparel 7
 
-// Användarinfo -- /data/customerLogin.txt 
+// Användarinfo -- /data/customerLogin.txt
 // Admininfo -- /data/adminLogin.txt
 // Produktinfo -- /data/products.txt
 // Kvitton -- /data/receipts.txt
@@ -31,6 +31,7 @@ do
             Customer.Login();
             Cart.AddToCart();
             Cart.RemoveFromCart();
+            Cart.ViewCart();
             break;
         case "2":
             Customer.Register();
