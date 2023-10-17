@@ -39,4 +39,54 @@ public class Menus
             }
         } while (init);
     }
+
+    public static void CustomerMenu()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Customer Menu");
+            Console.WriteLine("-------------");
+            Console.WriteLine("1. Browse Store");
+            Console.WriteLine("2. View Cart");
+            Console.WriteLine("3. Order History");
+            Console.WriteLine("4. Checkout");
+            Console.WriteLine("5. Logout");
+
+            string? customerInput = Console.ReadLine();
+
+            if (customerInput == "1")
+            {
+                Console.Clear();
+                Cart.AddToCart();
+            }
+            else if (customerInput == "2")
+            {
+                Console.Clear();
+                Cart.ViewCart();
+                Cart.RemoveFromCart();
+            }
+            else if (customerInput == "3")
+            {
+                Customer.OrderHistory();
+                Console.ReadKey();
+            }
+            else if (customerInput == "4")
+            {
+                Console.WriteLine("HEJ");
+                Console.Clear();
+                Checkout.DisplayOrder();
+            }
+            else if (customerInput == "5")
+            {
+                Console.Clear();
+                Customer.UserList.Clear();
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input");
+            }
+        }
+    }
 }

@@ -8,15 +8,21 @@ public class Cart
     public static void AddToCart()
     {
         Console.Clear();
-
+        Product.Get();
+        foreach (var item in Product.list)
+        {
+            string[] separateItems = item.Split(":");
+            Console.WriteLine($"{separateItems[0]} - {separateItems[1]}");
+        }
+        Console.WriteLine("-------------------------------");
         bool searchingForItems = true;
-        Console.WriteLine("1. Add products to cart\n2. Go back to menu");
+        Console.WriteLine("\n1. Add products to cart\n2. Go back to menu");
         string menuInput = Console.ReadLine();
 
         if (menuInput == "1")
         {
+            Console.Clear();
             Product.ShowAll();
-
             while (searchingForItems)
             {
                 Console.Write("\nType which product you would like to add to your cart: ");
@@ -70,7 +76,7 @@ public class Cart
         }
         else if (menuInput == "2")
         {
-            Customer.CustomerMenu();
+            Menus.CustomerMenu();
         }
     }
 

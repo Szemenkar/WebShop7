@@ -1,0 +1,65 @@
+2023-10-17 14:49:11
+
+Cart:
+***************************
+
+Armless Winter Jacket:$19,90
+Oversized Skinny Jeans:$49,99
+Wrinkly Summer Jacket:$16
+
+***************************
+
+Total sum: $53151352023-10-17 15:00:41
+***************************
+Armless Winter Jacket:$19,90
+Oversized Skinny Jeans:$49,99
+Recycled Hipster Beanie:$99,99
+***************************
+Total sum: $169,88
+2023-10-17 15:01:58
+***************************
+Cart:
+
+Armless Winter Jacket:$19,90
+Recycled Hipster Beanie:$99,99
+***************************
+Total sum: $119,88999999999999
+
+
+
+2023-10-17 15:03:10
+Cart:
+***************************
+
+Armless Winter Jacket:$19,90
+Recycled Hipster Beanie:$99,99
+***************************
+Total sum: $119,88999999999999
+
+
+
+2023-10-17 15:05:45
+Cart:
+***************************
+
+Armless Winter Jacket:$19,90
+Oversized Skinny Jeans:$49,99
+
+***************************
+Total sum: $69,89
+
+
+
+2023-10-17 15:07:07
+
+Cart:
+*****************************
+
+Armless Winter Jacket:$19,90
+Oversized Skinny Jeans:$49,99
+Recycled Hipster Beanie:$99,99
+
+*****************************
+Total sum: $169,88
+
+

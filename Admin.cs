@@ -6,9 +6,6 @@
 namespace e_commerce_project;
 public class Admin
 {
-    public string name;
-    public Admin(string Name) => Name = name;
-
     public static void AdminMenu()
     {
         Console.Write("Admin username: ");
@@ -168,12 +165,7 @@ public class Admin
             }
             else if (choice == "4")
             {
-                Console.WriteLine("Orders & Transactions:");
-                // Add code for Option 4 here
-                Console.WriteLine("1.");
-                Console.WriteLine("2.");
-                Console.WriteLine("3.");
-                Console.WriteLine("4.");
+                
             }
             else if (choice == "5")
             {
@@ -187,6 +179,25 @@ public class Admin
             }
         }
     }
+
+    public static string[] AllOrders()
+    {
+        string username = string.Empty;
+        string[] allCustomers = File.ReadAllLines("../../../data/customerLogin.txt");
+        string[] newArray = { };
+        foreach (var item in allCustomers)
+        {
+            string[] items = item.Split(":");
+            for (int i = 0; i < items.Length; i+=2)
+            {
+                Console.WriteLine(items[i]);
+                newArray[i] += items[i];
+            }
+        }
+
+        return newArray;
+    }
+
     public static void AddProduct()
     {
         bool newlisting = true;

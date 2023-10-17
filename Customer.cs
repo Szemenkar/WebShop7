@@ -19,9 +19,8 @@ public class Customer
 
     public static void Register()
     {
-
-        Console.Clear();
         Customer user = new Customer();
+        Console.Clear();
         Console.WriteLine("Register an account.");
         Console.WriteLine("--------------------");
 
@@ -32,8 +31,11 @@ public class Customer
         user._password = Console.ReadLine();
         UserList.Add(user);
 
+        File.Create($"../../../carts/{user.Username}.txt").Close();
 
         user.SaveCustomerData();
+
+        Console.Clear();
 
     }
     public static void Login()
@@ -55,10 +57,12 @@ public class Customer
                 string[] userDataParts = userDataLine.Split(':');
                 if (userDataParts[0] == username && userDataParts[1] == password)
                 {
+                    Customer user = new Customer();
                     Console.WriteLine("You successfully logged in.");
+                    user.Username = userDataParts[0];
+                    UserList.Add(user);
                     loggedIn = true;
-                    File.Create($"../../../carts/{username}.txt").Close();
-                    CustomerMenu();
+                    Menus.CustomerMenu();
                 }
             }
 
@@ -96,53 +100,15 @@ public class Customer
 
         File.WriteAllLines("../../../data/customerLogin.txt", OldUserData);
     }
-    public static void CustomerMenu()
+
+    public static void OrderHistory()
     {
-        while (true)
+        Console.Clear();
+        string[] history = File.ReadAllLines($"../../../carts/{UserList[0].Username}.txt");
+        foreach (var item in history)
         {
-            Console.Clear();
-            Console.WriteLine("Customer Menu");
-            Console.WriteLine("-------------");
-            Console.WriteLine("1. Browse Store");
-            Console.WriteLine("2. View Cart");
-            Console.WriteLine("3. Order History");
-            Console.WriteLine("4. Checkout");
-            Console.WriteLine("5. Logout");
-
-            string? customerInput = Console.ReadLine();
-
-            if (customerInput == "1")
-            {
-                Console.Clear();
-                Cart.AddToCart();
-            }
-            else if (customerInput == "2")
-            {
-                Console.Clear();
-                Cart.ViewCart();
-                Cart.RemoveFromCart();
-            }
-            else if (customerInput == "3")
-            {
-                //OrderHistory
-            }
-            else if (customerInput == "4")
-            {
-                Console.WriteLine("HEJ");
-                Console.Clear();
-                Checkout.DisplayOrder();
-            }
-            else if (customerInput == "5")
-            {
-                Console.Clear();
-                break;
-            }
-            else
-            {
-                Console.WriteLine("Invalid input");
-            }
+            Console.WriteLine(item);
         }
     }
-
 }
 

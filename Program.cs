@@ -14,5 +14,7 @@ foreach (var line in title)
 Console.ReadKey();
 Console.Clear();
 
+Admin.AllOrders();
+
 Menus.MainMenu();
 
