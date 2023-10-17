@@ -43,15 +43,20 @@ public class Admin
         while (true)
         {
             Console.Clear();
+
             Console.WriteLine("----------");
             Console.WriteLine("Admin Menu:");
             Console.WriteLine("----------"); ;
+
+            Console.WriteLine("Welcome to the Admin Menu:");
+            Console.WriteLine("-----------------------");
             Console.WriteLine("1. Add products");
             Console.WriteLine("2. Delete products");
             Console.WriteLine("3. Edit customer info");
             Console.WriteLine("4. View all orders");
             Console.WriteLine("5. Back");
             Console.WriteLine();
+            Console.WriteLine("-----------------------");
 
             Console.Write("Enter your choice: ");
             string? choice = Console.ReadLine();
@@ -149,6 +154,8 @@ public class Admin
 
                             Console.WriteLine("Customer information updated");
                             Console.WriteLine("Press any key to continue...");
+                            Console.WriteLine("Customer information updated successfully.");
+                            Console.WriteLine("Press any key to continue");
                             Console.ReadKey();
                         }
                         else
@@ -181,6 +188,7 @@ public class Admin
     }
 
     public static void OrderHistory()
+
     {
         string[] allCustomers = File.ReadAllLines("../../../data/customerLogin.txt");
 
@@ -235,8 +243,6 @@ public class Admin
             }
         }
     }
-
-
     public static void AddProduct()
     {
         bool newlisting = true;
