@@ -106,29 +106,36 @@ public class Customer
             Console.WriteLine("1. Browse Store");
             Console.WriteLine("2. View Cart");
             Console.WriteLine("3. Order History");
-            Console.WriteLine("4. Logout");
-
-            Console.WriteLine("Select 1,2,3 or 4");
+            Console.WriteLine("4. Checkout");
+            Console.WriteLine("5. Logout");
 
             string? customerInput = Console.ReadLine();
 
             if (customerInput == "1")
             {
                 Console.Clear();
-                Console.WriteLine("APPAREL 7");
                 Cart.AddToCart();
             }
             else if (customerInput == "2")
             {
-
+                Console.Clear();
+                Cart.ViewCart();
+                Cart.RemoveFromCart();
             }
             else if (customerInput == "3")
             {
-
+                //OrderHistory
             }
             else if (customerInput == "4")
             {
-                Menus.MainMenu();
+                Console.WriteLine("HEJ");
+                Console.Clear();
+                Checkout.DisplayOrder();
+            }
+            else if (customerInput == "5")
+            {
+                Console.Clear();
+                break;
             }
             else
             {

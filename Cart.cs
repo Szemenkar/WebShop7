@@ -74,7 +74,7 @@ public class Cart
         while (removeItemQuestion && shoppingCart.Count >= 1)
         {
             Console.WriteLine("Would you like to remove an item from the cart? Y/N");
-            string input = Console.ReadLine().ToLower();
+            string? input = Console.ReadLine().ToLower();
             if (input == "y" && shoppingCart.Count >= 1)
             {
                 int count = 1;

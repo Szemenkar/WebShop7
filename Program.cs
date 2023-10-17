@@ -4,9 +4,7 @@
 // Admininfo -- /data/adminLogin.txt
 // Produktinfo -- /data/products.txt
 // Kvitton -- /data/receipts.txt
-
 using e_commerce_project;
-
 // Title Display
 string[] title = File.ReadAllLines("../../../data/title.txt");
 foreach (var line in title)
@@ -17,5 +15,3 @@ Console.ReadKey();
 Console.Clear();
 
 Menus.MainMenu();
-
-// Init
