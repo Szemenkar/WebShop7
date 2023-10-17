@@ -58,6 +58,7 @@ public class Admin
 
             Console.Write("Enter your choice: ");
             string choice = Console.ReadLine();
+            Console.Clear();
 
             if (choice == "1")
             {
@@ -86,7 +87,7 @@ public class Admin
                     string deletedProduct = Product.list[selectedIndex -1];
                     Product.Delete(deletedProduct);
                     
-                    Console.WriteLine(deletedProduct + " Is now removed");
+                    Console.WriteLine(deletedProduct + " is now removed");
 
                     Console.Clear();
                     Console.WriteLine("Press Enter to return to the admin menu");
@@ -150,6 +151,8 @@ public class Admin
                             File.WriteAllLines("../../../data/customerLogin.txt", info);
 
                             Console.WriteLine("Customer information updated successfully.");
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
                         }
                         else
                         {

@@ -7,7 +7,7 @@
 // Se sin egen köphistorik
 
 public class Customer
-    {
+{
     public string? Username;
     private string? _password;
 
@@ -31,10 +31,10 @@ public class Customer
         Console.Write("Password: ");
         user._password = Console.ReadLine();
         UserList.Add(user);
- 
+
 
         user.SaveCustomerData();
-        
+
     }
     public static void Login()
     {
@@ -58,7 +58,7 @@ public class Customer
                     Console.WriteLine("You successfully logged in.");
                     loggedIn = true;
                     File.Create($"../../../carts/{username}.txt").Close();
-                    break;
+                    CustomerMenu();
                 }
             }
 
@@ -95,6 +95,46 @@ public class Customer
         OldUserData.AddRange(UpdateUserData);
 
         File.WriteAllLines("../../../data/customerLogin.txt", OldUserData);
+    }
+    public static void CustomerMenu()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Customer Menu");
+            Console.WriteLine("-------------");
+            Console.WriteLine("1. Browse Store");
+            Console.WriteLine("2. View Cart");
+            Console.WriteLine("3. Order History");
+            Console.WriteLine("4. Logout");
+
+            Console.WriteLine("Select 1,2,3 or 4");
+
+            string? customerInput = Console.ReadLine();
+
+            if (customerInput == "1")
+            {
+                Console.Clear();
+                Console.WriteLine("APPAREL 7");
+                Cart.AddToCart();
+            }
+            else if (customerInput == "2")
+            {
+
+            }
+            else if (customerInput == "3")
+            {
+
+            }
+            else if (customerInput == "4")
+            {
+                Menus.MainMenu();
+            }
+            else
+            {
+                Console.WriteLine("Invalid input");
+            }
+        }
     }
 
 }
