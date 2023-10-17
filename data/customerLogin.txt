@@ -1,2 +1,2 @@
-user:password
 valle:valle123
+johannes:12345

@@ -11,13 +11,36 @@ public class Admin
 
     public static void AdminMenu()
     {
-        string[] products = File.ReadAllLines("../../../data/products.txt");
+        Console.Write("Admin username: ");
+        string username = Console.ReadLine();
+        Console.Write("Admin password: ");
+        string password = Console.ReadLine();
 
-        List<string> productlist = new List<string>();
+        bool adminLogin = true;
 
-        for (int i = 0; i < products.Length; i++)
+        while (adminLogin)
         {
-            productlist.Add(products[i]);
+            string[] adminInformation = File.ReadAllLines("../../../data/adminLogin.txt");
+            foreach (string item in adminInformation)
+            {
+                string[] admin = item.Split(':');
+                if (admin[0] == username && admin[1] == password)
+                {
+                    Console.WriteLine("You successfully logged in.");
+                    adminLogin = false;
+                    break;
+                }
+            }
+
+            if (adminLogin)
+            {
+                Console.WriteLine("Your username or password is invalid. Try again.");
+                Console.Write("Admin username: ");
+                username = Console.ReadLine();
+                Console.Write("Admin password: ");
+                password = Console.ReadLine();
+                adminLogin = true;
+            }
         }
 
         while (true)
@@ -39,10 +62,13 @@ public class Admin
             if (choice == "1")
             {
                 Console.Clear();
+
                 Admin.AddProduct();
-                Thread.Sleep(1000);
+
                 Console.Clear();
+
                 Console.WriteLine("Press Enter to return to admin menu");
+
                 Console.ReadLine();
 
                 Console.Clear();
@@ -50,17 +76,18 @@ public class Admin
             else if (choice == "2")
             {
                 Console.Clear();
-                Products.fetchProducts();
+
+                Product.ShowAll();
+
                 Console.WriteLine("What products would you like to delete?");
 
-                if (int.TryParse(Console.ReadLine(), out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= productlist.Count)
+                if (int.TryParse(Console.ReadLine(), out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= Product.list.Count)
                 {
-                    string deletedProduct = productlist[selectedIndex - 1];
-                    productlist.RemoveAt(selectedIndex - 1);
+                    string deletedProduct = Product.list[selectedIndex -1];
+                    Product.Delete(deletedProduct);
                     
                     Console.WriteLine(deletedProduct + " Is now removed");
 
-                    Thread.Sleep(1000);
                     Console.Clear();
                     Console.WriteLine("Press Enter to return to the admin menu");
                     Console.ReadLine();
@@ -108,7 +135,7 @@ public class Admin
     public static void AddProduct()
     {
         bool newlisting = true;
-
+        Product.Get();
         while (newlisting)
         {
             Console.WriteLine("Type the name of the product you wish to add.");
