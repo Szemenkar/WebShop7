@@ -16,7 +16,14 @@ public class Cart
 
         if (menuInput == "1")
         {
+
             while (searchingForItems)
+
+            Console.Write("\nType which product you would like to add to your cart: ");
+            bool choosingItem = true;
+            string? orderInput = Console.ReadLine();
+            while (choosingItem)
+
             {
                 Console.Write("\nType which product you would like to add to your cart: ");
                 bool choosingItem = true;
@@ -83,7 +90,7 @@ public class Cart
         while (removeItemQuestion && shoppingCart.Count >= 1)
         {
             Console.WriteLine("Would you like to remove an item from the cart? Y/N");
-            string input = Console.ReadLine().ToLower();
+            string? input = Console.ReadLine().ToLower();
             if (input == "y" && shoppingCart.Count >= 1)
             {
                 int count = 1;
