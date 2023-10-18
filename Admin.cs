@@ -102,14 +102,66 @@ public class Admin
             }
             else if (choice == "3")
             {
-                Console.WriteLine("Edit customer information.");
-                // Add code for Option 3 here
-                Console.WriteLine("1.");
-                Console.WriteLine("2.");
-                Console.WriteLine("3.");
-                Console.WriteLine("4.");
+                {
+                    Console.WriteLine("Edit Customer Information");
+                    string[] info = File.ReadAllLines("../../../data/customerLogin.txt");
 
-                string val = Console.ReadLine();
+                    // visar customer list samt ger user val att kunna välja 1,2,3 
+                    for (int i = 0; i < info.Length; i++)
+                    {
+                        Console.WriteLine($"{i + 1}. {info[i]}");
+                    }
+
+                    // välj valfri kund
+                    Console.Write("Select a customer to edit (enter the number): ");
+                    if (int.TryParse(Console.ReadLine(), out int customerIndex) && customerIndex >= 1 && customerIndex <= info.Length)
+                    {
+                        // vill du ändra namn eller lösen
+                        Console.Write("What would you like to edit? (1. Name, 2. Password): ");
+                        if (int.TryParse(Console.ReadLine(), out int editChoice) && (editChoice == 1 || editChoice == 2))
+                        {
+                            Console.Write("Enter the updated information: ");
+                            string updatedInfo = Console.ReadLine();
+
+                            // efter ändringen ska det sparas
+                            string[] customerData = info[customerIndex - 1].Split(':');
+                            if (editChoice == 1)
+                            {
+                                // Updatera namn
+                                customerData[0] = updatedInfo;
+                            }
+                            else if (editChoice == 2)
+                            {
+                                // Updatera lösen
+                                customerData[1] = updatedInfo;
+                            }
+
+                            if (editChoice == 1)
+                            {
+
+                                info[customerIndex - 1] = updatedInfo + ":" + customerData[1];
+                            }
+                            else if (editChoice == 2)
+                            {
+                                info[customerIndex - 1] = customerData[0] + ":" + updatedInfo;
+                            }
+
+                            // uppdaterar ändringen till filen
+                            File.WriteAllLines("../../../data/customerLogin.txt", info);
+
+                            Console.WriteLine("Customer information updated successfully.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid choice for what to edit.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid customer selection.");
+                    }
+                }
+
             }
             else if (choice == "4")
             {
