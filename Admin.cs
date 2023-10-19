@@ -50,9 +50,8 @@ public class Admin
             Console.WriteLine("3. Edit customer info");
             Console.WriteLine("4. View all orders");
             Console.WriteLine("5. Back");
-            Console.WriteLine();
             Console.WriteLine("-----------------------");
-
+            Console.WriteLine();
             Console.Write("Enter your choice: ");
             string? choice = Console.ReadLine();
             Console.Clear();
