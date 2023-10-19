@@ -110,6 +110,7 @@ public class Customer
         Console.WriteLine();
         string[] receipts = File.ReadAllLines($"../../../userdata/{UserList[0].Username}.txt");
 
+<<<<<<< Updated upstream
         int indexer = 1;
 
         // Skapar lista över orders (hämtar första raden i varje order)
@@ -120,6 +121,21 @@ public class Customer
             orderlist.Add(receipts[i]);
         }
 
+=======
+        // Skapar lista över orders (hämtar första raden i varje order)
+        List<string> orderlist = new List<string>();
+
+        for (int i = 0; i < receipts.Length; i++)
+        {
+            if (receipts[i].StartsWith("20"))
+            {
+                orderlist.Add(receipts[i]);
+            }
+        }
+
+        int indexer = 1;
+
+>>>>>>> Stashed changes
         // Skriver ut listan och indexerar
         foreach (var item in orderlist)
         {
@@ -134,6 +150,7 @@ public class Customer
 
         Console.Clear();
 
+<<<<<<< Updated upstream
         for (int i = 0; i < orderlist.Count; i++)
         {
             if (int.TryParse(input, out int x) && orderlist[i] == orderlist[x-1])
@@ -153,6 +170,32 @@ public class Customer
         
         }
 
+=======
+        if (int.TryParse(input, out int x) && x >= 1 && x <= orderlist.Count)
+        {
+            string orderChoice = orderlist[x - 1];
+
+            int receiptStart = Array.IndexOf(receipts, orderChoice);
+ //           int nextReceipt = 
+            int receiptEnd = receiptStart;
+
+            // Adderar 1 (line) till receiptEnd tills den når raden "Total sum"
+            while (receiptEnd < receipts.Length && !receipts[receiptEnd].Contains("Total sum:"))
+            {
+                receiptEnd++;
+            }
+
+            // Skriver ut kvittot
+            for (int i = receiptStart; i < receiptEnd; i++)
+            {
+                Console.WriteLine(receipts[i]);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Order number not found.");
+        }
+>>>>>>> Stashed changes
 
         //foreach (var orderdetail in receipts)
 
