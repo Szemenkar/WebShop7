@@ -64,12 +64,8 @@ public class Checkout
         File.ReadAllLines($"../../../userdata/{Customer.UserList[0].Username}.txt");
         StreamWriter write = File.AppendText($"../../../userdata/{Customer.UserList[0].Username}.txt");
 
-<<<<<<< Updated upstream
-        write.WriteLine($"{DateTime.Now.ToString()}\n\nCart:\n*****************************\n");
-=======
         write.WriteLine($"{DateTime.Now}\n\nCart:\n*****************************\n");
->>>>>>> Stashed changes
-        
+
         for (int i = 0; i < Cart.shoppingCart.Count; i++)
         {
             write.WriteLine(Cart.shoppingCart[i]);
