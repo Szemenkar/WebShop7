@@ -8,6 +8,8 @@ public class Cart
     public static void AddToCart()
     {
         Console.Clear();
+        Console.WriteLine("Browsing Apparel 7");
+        Console.WriteLine("-------------------------------");
         Product.Get();
         foreach (var item in Product.list)
         {
@@ -49,7 +51,7 @@ public class Cart
                     }
                     else
                     {
-                        Console.Write("You must write one of the options above: ");
+                        Console.Write("You must enter one of the options above: ");
                         orderInput = Console.ReadLine();
                     }
                 }
@@ -107,7 +109,8 @@ public class Cart
             }
             while (removeItem && shoppingCart.Count >= 1)
             {
-                Console.Write("\nType which of the products you would like to remove from the cart: ");
+                Console.WriteLine("\nType which of the products you would like to remove from the cart: ");
+                Console.WriteLine($"Type 'back' to go back");
                 string? removeInput = Console.ReadLine();
                 if (int.TryParse(removeInput, out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= shoppingCart.Count)
                 {
@@ -120,6 +123,10 @@ public class Cart
                     Console.WriteLine("-------------------------------------------------");
                     removeItem = false;
                     showItem = true;
+                }
+                else if (removeInput is "back")
+                {
+                    break;
                 }
                 else
                 {
