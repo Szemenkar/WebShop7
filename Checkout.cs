@@ -35,7 +35,7 @@ public class Checkout
         }
         Console.WriteLine("Order total: $" + Math.Round(total, 2));
         Console.WriteLine();
-        Console.WriteLine("---------------------");
+        Console.WriteLine("---------------------------------\n");
         Console.WriteLine("\n1. Checkout\n2. Cancel Order");
 
         switch (Console.ReadLine())
@@ -62,7 +62,7 @@ public class Checkout
         File.ReadAllLines($"../../../userdata/{Customer.UserList[0].Username}.txt");
         StreamWriter write = File.AppendText($"../../../userdata/{Customer.UserList[0].Username}.txt");
 
-        write.WriteLine($"\n{DateTime.Now.ToString()}\n\nCart:\n*****************************\n");
+        write.WriteLine($"{DateTime.Now.ToString()}\n\nCart:\n*****************************\n");
         
         for (int i = 0; i < Cart.shoppingCart.Count; i++)
         {

@@ -105,15 +105,39 @@ public class Customer
 
     public static void OrderHistory()
     {
-        Console.WriteLine("-------------");
-        Console.WriteLine("Order History");
-        Console.WriteLine("-------------");
         Console.Clear();
-        string[] history = File.ReadAllLines($"../../../userdata/{UserList[0].Username}.txt");
-        foreach (var item in history)
+        Console.WriteLine("Orders");
+        Console.WriteLine();
+        string[] receipts = File.ReadAllLines($"../../../userdata/{UserList[0].Username}.txt");
+        int indexer = 1;
+
+
+        List <string> orderlist = new List<string>();
+        for (int i = 0; i < receipts.Length; i+=12)
         {
-            Console.WriteLine(item);
+            orderlist.Add(receipts[i]);
         }
+
+        foreach (var item in orderlist)
+        {
+            Console.WriteLine($"Order #{indexer} -- {item}");
+            indexer++;
+            // Console.WriteLine(item);
+        }
+        Console.WriteLine();
+        Console.WriteLine("Enter order number to view order");
+        string? input = Console.ReadLine();
+        for (int i = 0; i < orderlist.Count; i++)
+        {
+            if (int.TryParse(input, out int x) && x == orderlist[i].IndexOf)
+        }
+        
+
+        //foreach (var orderdetail in receipts)
+
+        //{
+        //    Console.WriteLine(orderdetail);
+        //}
         Console.WriteLine();
         Console.WriteLine("----------------------------------------");
         Console.WriteLine();
