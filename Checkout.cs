@@ -6,54 +6,67 @@ public class Checkout
 
     public static void DisplayOrder()
     {
-        Console.Clear();
-        Console.WriteLine("Your order:");
-        Console.WriteLine();
-
         order = Cart.shoppingCart;
-
-        foreach (var product in order)
+        Console.Clear();
+        bool tryToDisplay = true;
+        while (tryToDisplay)
         {
-            string[] items = product.Split(":");
-            Console.WriteLine($"{items[0]} ({items[1]})");
-        }
-        Console.WriteLine();
-        Console.WriteLine("---------------------------------\n");
-
-        foreach (var product in order)
-        {
-            string[] prices = product.Split("$");
-
-            if (double.TryParse(prices[1], out double c))
+            if (order.Count == 0)
             {
-                total += c;
-            }
-            else
-            {
-                Console.WriteLine("Product price not found");
-            }
-        }
-        Console.WriteLine("Order total: $" + Math.Round(total, 2));
-        Console.WriteLine();
-        Console.WriteLine("---------------------");
-        Console.WriteLine("\n1. Checkout\n2. Cancel Order");
-
-        switch (Console.ReadLine())
-        {
-            case "1":
-                Console.Clear();
-                Console.WriteLine("Your order has been completed! Press any key to continue.");
-                Save();
-                Cart.shoppingCart.Clear();
-                total = 0;
+                Console.WriteLine("You do not have any products in your cart.\nPlease add items before trying to checkout.");
                 Console.ReadKey();
                 break;
-            case "2":
-                total = 0;
-                break;
-            default: Console.WriteLine("Invalid input");
-                break;
+            }
+            Console.WriteLine("Your order:");
+            Console.WriteLine();
 
+            foreach (var product in order)
+            {
+                string[] items = product.Split(":");
+                Console.WriteLine($"{items[0]} ({items[1]})");
+            }
+            Console.WriteLine();
+            Console.WriteLine("---------------------------------\n");
+
+            foreach (var product in order)
+            {
+                string[] prices = product.Split("$");
+
+                if (double.TryParse(prices[1], out double c))
+                {
+                    total += c;
+                }
+                else
+                {
+                    Console.WriteLine("Product price not found");
+                }
+            }
+            Console.WriteLine("Order total: $" + Math.Round(total, 2));
+            Console.WriteLine();
+            Console.WriteLine("---------------------");
+            Console.WriteLine("\n1. Checkout\n2. Cancel Order");
+
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    Console.Clear();
+                    Console.WriteLine("Your order has been completed! Press any key to continue.");
+                    Save();
+                    Cart.shoppingCart.Clear();
+                    total = 0;
+                    Console.ReadKey();
+                    tryToDisplay = false;
+                    break;
+                case "2":
+                    total = 0;
+                    tryToDisplay = false;
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Invalid input");
+                    break;
+
+            }
         }
     }
 

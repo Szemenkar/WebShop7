@@ -22,7 +22,7 @@ public class Customer
         Customer user = new Customer();
         Console.Clear();
         Console.WriteLine("-------------------");
-        Console.WriteLine("Register an account.");
+        Console.WriteLine("Register an account");
         Console.WriteLine("-------------------");
 
         Console.Write("Username: ");
@@ -43,7 +43,7 @@ public class Customer
     {
         Console.Clear();
         Console.WriteLine("----------------------");
-        Console.WriteLine("Login to your account.");
+        Console.WriteLine("Login to your account");
         Console.WriteLine("----------------------");
         Console.Write("Username: ");
         string? username = Console.ReadLine();
@@ -71,9 +71,10 @@ public class Customer
             if (!loggedIn)
             {
                 Console.WriteLine("Your username or password is invalid.");
-                Console.WriteLine("Try to Login again or Register an account.");
-                Console.WriteLine("Answer with L or R");
+                Console.WriteLine("Try to login again or register a new account.");
+                Console.Write("Type L for Login or R for Register: ");
                 string? answerLorR = Console.ReadLine().ToLower();
+
                 if (answerLorR == "l")
                 {
                     Login();
@@ -121,4 +122,3 @@ public class Customer
         Console.ReadKey();
     }
 }
-

@@ -37,7 +37,7 @@ public class Cart
                     {
                         string addedProduct = Product.list[selectedIndex - 1];
                         Console.Clear();
-                        Console.WriteLine("\nYou've succesfully added that item to your cart!");
+                        Console.WriteLine("You've succesfully added that item to your cart!");
                         shoppingCart.Add(addedProduct);
                         Console.WriteLine("\n--------------------------------------");
                         Console.WriteLine("These items are currently in your shopping cart:");
@@ -137,7 +137,7 @@ public class Cart
 
         if (shoppingCart.Count == 0)
         {
-            Console.WriteLine("You don't have any items in your shopping cart\nPress any key to continue.");
+            Console.WriteLine("You don't have any items in your shopping cart.\nPress any key to continue");
             Console.ReadKey();
         }
     }
