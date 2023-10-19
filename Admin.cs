@@ -43,11 +43,6 @@ public class Admin
         while (true)
         {
             Console.Clear();
-
-            Console.WriteLine("----------");
-            Console.WriteLine("Admin Menu:");
-            Console.WriteLine("----------"); ;
-
             Console.WriteLine("Welcome to the Admin Menu:");
             Console.WriteLine("-----------------------");
             Console.WriteLine("1. Add products");
