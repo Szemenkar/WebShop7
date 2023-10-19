@@ -17,6 +17,7 @@ public class Checkout
             string[] items = product.Split(":");
             Console.WriteLine($"{items[0]} ({items[1]})");
         }
+        Console.WriteLine();
         Console.WriteLine("---------------------------------\n");
 
         foreach (var product in order)
@@ -33,6 +34,7 @@ public class Checkout
             }
         }
         Console.WriteLine("Order total: $" + Math.Round(total, 2));
+        Console.WriteLine();
         Console.WriteLine("---------------------");
         Console.WriteLine("\n1. Checkout\n2. Cancel Order");
 
@@ -67,7 +69,7 @@ public class Checkout
             write.WriteLine(Cart.shoppingCart[i]);
         }
 
-        write.WriteLine($"\n*****************************\nTotal sum: ${Math.Round(total, 2)}\n");
+        write.WriteLine($"\n*****************************\n\nTotal sum: ${Math.Round(total, 2)}\n");
 
         write.Close();
     }

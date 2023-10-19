@@ -34,6 +34,7 @@ public class Cart
                     if (int.TryParse(orderInput, out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= Product.list.Count)
                     {
                         string addedProduct = Product.list[selectedIndex - 1];
+                        Console.Clear();
                         Console.WriteLine("\nYou've succesfully added that item to your cart!");
                         shoppingCart.Add(addedProduct);
                         Console.WriteLine("\n--------------------------------------");
