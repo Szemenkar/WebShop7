@@ -136,9 +136,12 @@ public class Customer
 
         for (int i = 0; i < orderlist.Count; i++)
         {
-            if (int.TryParse(input, out int x) && orderlist[i] == orderlist[x])
+            if (int.TryParse(input, out int x) && orderlist[i] == orderlist[x-1])
             {
-                for (int y = x * 12 + 1; y < x * 12 + 12; y++)
+                int receiptStart = x-1 * 12;
+                int receiptEnd = receiptStart + 12;
+
+                for (int y = receiptStart; y < receiptEnd; y++)
                 {
                     Console.WriteLine(receipts[y]);
                 }
