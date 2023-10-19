@@ -109,29 +109,47 @@ public class Customer
         Console.WriteLine("Orders");
         Console.WriteLine();
         string[] receipts = File.ReadAllLines($"../../../userdata/{UserList[0].Username}.txt");
+
         int indexer = 1;
 
+        // Skapar lista över orders (hämtar första raden i varje order)
+        List<string> orderlist = new List<string>();
 
-        List <string> orderlist = new List<string>();
-        for (int i = 0; i < receipts.Length; i+=12)
+        for (int i = 0; i < receipts.Length; i += 12)
         {
             orderlist.Add(receipts[i]);
         }
 
+        // Skriver ut listan och indexerar
         foreach (var item in orderlist)
         {
             Console.WriteLine($"Order #{indexer} -- {item}");
             indexer++;
-            // Console.WriteLine(item);
         }
+
         Console.WriteLine();
         Console.WriteLine("Enter order number to view order");
+
         string? input = Console.ReadLine();
+
+        Console.Clear();
+
         for (int i = 0; i < orderlist.Count; i++)
         {
-            if (int.TryParse(input, out int x) && x == orderlist[i].IndexOf)
-        }
+            if (int.TryParse(input, out int x) && orderlist[i] == orderlist[x])
+            {
+                for (int y = x * 12 + 1; y < x * 12 + 12; y++)
+                {
+                    Console.WriteLine(receipts[y]);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Order number not found.");
+            }
         
+        }
+
 
         //foreach (var orderdetail in receipts)
 
