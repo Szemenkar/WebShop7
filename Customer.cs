@@ -152,8 +152,8 @@ public class Customer
             {
                 string orderChoice = orderlist[x - 1];
 
+                // Hittar en string i en array och ger en index-int
                 int receiptStart = Array.IndexOf(receipts, orderChoice);
-
                 int receiptEnd = receiptStart;
 
                 // Adderar 1 (line) till receiptEnd tills den når raden "Total sum"
@@ -174,11 +174,6 @@ public class Customer
             }
         }
 
-        //foreach (var orderdetail in receipts)
-
-        //{
-        //    Console.WriteLine(orderdetail);
-        //}
         Console.WriteLine();
         Console.WriteLine();
         Console.WriteLine("Press any key to go back");

@@ -69,8 +69,6 @@ public class Checkout
 
             }
         }
-    }
-
     public static void Save()
     {
         int ordernumber = 1;
@@ -92,3 +90,5 @@ public class Checkout
         ordernumber++;
     }
 }
+
+   
