@@ -82,7 +82,7 @@ public class Cart
         }
         else if (menuInput == "2")
         {
-            Menus.CustomerMenu();
+            Menu.Customers();
         }
     }
 
@@ -110,7 +110,7 @@ public class Cart
             while (removeItem && shoppingCart.Count >= 1)
             {
                 Console.WriteLine("\nType which of the products you would like to remove from the cart: ");
-                Console.WriteLine($"Type 'back' to go back");
+                Console.WriteLine("Type 'back' to go back");
                 string? removeInput = Console.ReadLine();
                 if (int.TryParse(removeInput, out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= shoppingCart.Count)
                 {

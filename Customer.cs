@@ -13,32 +13,73 @@ public class Customer
 
     public static List<Customer> UserList = new List<Customer>();
 
-    // Gör loop
-    // Kolla password & username length
-    // Inga whitespaces/null
-
     public static void Register()
     {
         Customer user = new Customer();
+        string[] usernames = File.ReadAllLines("data/customerLogin.txt");
+        List<string> formattedUswername = new();
         Console.Clear();
         Console.WriteLine("-------------------");
         Console.WriteLine("Register an account");
         Console.WriteLine("-------------------");
+        bool exists = false;
+        do
+        {
+            exists = false;
+            foreach (var item in usernames)
+            {
+                string[] items = item.Split(":");
+                formattedUswername.Add(items[0]);
+            }
 
-        Console.Write("Username: ");
-        user.Username = Console.ReadLine();
+            Console.Write("Username: ");
+            user.Username = Console.ReadLine();
 
-        Console.Write("Password: ");
-        user._password = Console.ReadLine();
-        UserList.Add(user);
 
-        File.Create($"../../../userdata/{user.Username}.txt").Close();
+            for (int i = 0; i < formattedUswername.Count - 1; i++)
+            {
+                if (formattedUswername[i].Equals(user.Username))
+                {
+                    Console.Clear();
+                    Console.WriteLine("Username already exists, try another name");
+                    exists = true;
+                }
+            }
 
-        user.SaveCustomerData();
+        } while (exists);
 
         Console.Clear();
+        bool passLength = true;
 
+        while (passLength)
+        {
+            Console.Write("Password: ");
+            user._password = Console.ReadLine() ?? string.Empty;
+            if (user._password.Length < 6 || user._password.Length > 20)
+            {
+                Console.Clear();
+                Console.WriteLine("Password length must be between 6 and 20 characters long");
+            }
+            else if (user._password.Contains(" "))
+            {
+                Console.Clear();
+                Console.WriteLine("No whitespaces in the password is allowed");
+            }
+            else
+            {
+                passLength = false;
+            }
+        }
+
+        UserList.Add(user);
+        File.Create($"userdata/{user.Username}.txt").Close();
+        user.SaveCustomerData();
+        Console.Clear();
+        Console.WriteLine($"Customer '{user.Username}' was created succesfully!\nPress any key to continue");
+        Console.ReadKey();
+        Console.Clear();
     }
+
     public static void Login()
     {
         Console.Clear();
@@ -53,18 +94,17 @@ public class Customer
 
         while (!loggedIn)
         {
-            string[] dataLines = File.ReadAllLines("../../../data/customerLogin.txt");
+            string[] dataLines = File.ReadAllLines("data/customerLogin.txt");
             foreach (string userDataLine in dataLines)
             {
                 string[] userDataParts = userDataLine.Split(':');
                 if (userDataParts[0] == username && userDataParts[1] == password)
                 {
                     Customer user = new Customer();
-                    Console.WriteLine("You successfully logged in.");
                     user.Username = userDataParts[0];
                     UserList.Add(user);
                     loggedIn = true;
-                    Menus.CustomerMenu();
+                    Menu.Customers();
                 }
             }
 
@@ -88,11 +128,12 @@ public class Customer
             }
         }
     }
+
     public void SaveCustomerData()
     {
         List<string> OldUserData = new List<string>();
 
-        OldUserData = File.ReadAllLines("../../../data/customerLogin.txt").ToList();
+        OldUserData = File.ReadAllLines("data/customerLogin.txt").ToList();
 
         List<string> UpdateUserData = new List<string>();
         foreach (Customer user in Customer.UserList)
@@ -101,7 +142,7 @@ public class Customer
         }
         OldUserData.AddRange(UpdateUserData);
 
-        File.WriteAllLines("../../../data/customerLogin.txt", OldUserData);
+        File.WriteAllLines("data/customerLogin.txt", OldUserData);
     }
 
     public static void OrderHistory()
@@ -110,9 +151,9 @@ public class Customer
 
         Console.WriteLine("Order History:");
         Console.WriteLine();
-        string[] receipts = File.ReadAllLines($"../../../userdata/{UserList[0].Username}.txt");
+        string[] receipts = File.ReadAllLines($"userdata/{UserList[0].Username}.txt");
 
-        if (receipts.Length == 0 || !File.Exists($"../../../userdata/{UserList[0].Username}.txt"))
+        if (receipts.Length == 0 || !File.Exists($"userdata/{UserList[0].Username}.txt"))
         {
             Console.WriteLine("----------------------");
             Console.WriteLine("No order history found!");
@@ -143,6 +184,7 @@ public class Customer
 
             Console.WriteLine();
             Console.WriteLine("Enter order number to view order");
+            Console.WriteLine("Type 'back' to go back");
 
             string? input = Console.ReadLine();
 
@@ -163,10 +205,14 @@ public class Customer
                 }
 
                 // Skriver ut kvittot
-                for (int i = receiptStart; i < receiptEnd; i++)
+                for (int i = receiptStart; i < receiptEnd + 1; i++)
                 {
                     Console.WriteLine(receipts[i]);
                 }
+            }
+            else if (input == "back")
+            {
+                Menu.Customers();
             }
             else
             {

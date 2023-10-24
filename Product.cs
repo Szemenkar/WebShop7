@@ -2,7 +2,7 @@
 public class Product
 {
     public static List<string> list = new List<string>();
-    public static string ProductPath = "../../../data/products.txt";
+    public static string ProductPath = "data/products.txt";
 
     // Uppdatera (Get) och Visa Alla Produkter
     public static void ShowAll()
@@ -34,12 +34,6 @@ public class Product
     public static void Rewrite()
     {
         File.WriteAllLines(ProductPath, list);
-    }
-
-    public static void Make(string product)
-    {
-        list.Add(product);
-        Rewrite();
     }
 
     public static void Delete(string product)

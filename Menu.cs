@@ -1,8 +1,8 @@
 ﻿namespace e_commerce_project;
 
-public class Menus
+public class Menu
 {
-    public static void MainMenu()
+    public static void Main()
     {
         bool remainMain = true;
 
@@ -28,7 +28,7 @@ public class Menus
                     break;
                 case "3":
                     Console.Clear();
-                    AdminMenu();
+                    Admins();
                     break;
                 default:
                     Console.Clear();
@@ -38,7 +38,7 @@ public class Menus
         } while (remainMain);
     }
 
-    public static void CustomerMenu()
+    public static void Customers()
     {
         bool remainMenu = true;
         while (remainMenu)
@@ -84,7 +84,7 @@ public class Menus
         }
     }
 
-    public static void AdminMenu()
+    public static void Admins()
     {
         Console.WriteLine("--------------------------");
         Console.WriteLine("Login to your admin account");
@@ -98,7 +98,7 @@ public class Menus
 
         while (adminLogin)
         {
-            string[] adminInformation = File.ReadAllLines("../../../data/adminLogin.txt");
+            string[] adminInformation = File.ReadAllLines("data/adminLogin.txt");
             foreach (string item in adminInformation)
             {
                 string[] admin = item.Split(':');
@@ -151,7 +151,7 @@ public class Menus
                     break;
                 case "5":
                     Console.Clear();
-                    MainMenu();
+                    Main();
                     break;
                 default:
                     Console.Clear();

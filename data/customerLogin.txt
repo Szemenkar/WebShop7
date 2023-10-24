@@ -1,5 +1,0 @@
-valle:123
-johannes:123
-demo1:demopassword1
-demo2:demopassword2
-demo3:demopassword3

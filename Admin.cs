@@ -9,7 +9,7 @@ public class Admin
     public static void OrderHistory()
 
     {
-        string[] allCustomers = File.ReadAllLines("../../../data/customerLogin.txt");
+        string[] allCustomers = File.ReadAllLines("data/customerLogin.txt");
 
         List<string> Usernames = new();
 
@@ -41,10 +41,10 @@ public class Admin
                 Console.Clear();
                 break;
             }
-            else if (File.Exists($"../../../userdata/{input}.txt"))
+            else if (File.Exists($"userdata/{input}.txt"))
             {
                 Console.Clear();
-                string[] history = File.ReadAllLines($"../../../userdata/{input}.txt");
+                string[] history = File.ReadAllLines($"userdata/{input}.txt");
                 foreach (var item in history)
                 {
                     Console.WriteLine(item);
@@ -79,7 +79,7 @@ public class Admin
 
             if (double.TryParse(productPrice, out double price))
             {
-                StreamWriter write = File.AppendText("../../../data/products.txt");
+                StreamWriter write = File.AppendText("data/products.txt");
                 write.WriteLine($"{productTitle}:${productPrice}");
                 write.Close();
                 Console.Clear();
@@ -122,24 +122,31 @@ public class Admin
     public static void DeleteProduct()
     {
         Console.Clear();
-        Product.ShowAll();
-        Console.WriteLine("What products would you like to delete?");
-
-        if (int.TryParse(Console.ReadLine(), out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= Product.list.Count)
+        while (true)
         {
-            string deletedProduct = Product.list[selectedIndex - 1];
-            Product.Delete(deletedProduct);
-            Console.Clear();
-            Console.WriteLine(deletedProduct + " has been deleted");
-            Console.WriteLine("Press any key to return to the admin menu");
-            Console.ReadLine();
+            Product.ShowAll();
+            Console.WriteLine("What products would you like to delete?\nType 'back' to go back");
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= Product.list.Count)
+            {
+                string deletedProduct = Product.list[selectedIndex - 1];
+                Product.Delete(deletedProduct);
+                Console.Clear();
+                Console.WriteLine(deletedProduct + " has been deleted");
+                Console.WriteLine("Press any key to return to the admin menu");
+                Console.ReadLine();
+            }
+            else if (input == "back")
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid index. Press Enter to try again.");
+                Console.ReadKey();
+                Console.Clear();
+            }
         }
-        else
-        {
-            Console.WriteLine("Invalid index. Press Enter to try again.");
-            Console.ReadLine();
-        }
-
         Console.Clear();
     }
 
@@ -148,7 +155,7 @@ public class Admin
     {
         {
             Console.WriteLine("Edit Customer Information");
-            string[] info = File.ReadAllLines("../../../data/customerLogin.txt");
+            string[] info = File.ReadAllLines("data/customerLogin.txt");
 
             // visar customer list samt ger user val att kunna välja 1,2,3 
             for (int i = 0; i < info.Length; i++)
@@ -183,7 +190,7 @@ public class Admin
                     }
 
                     // uppdaterar ändringen till filen
-                    File.WriteAllLines("../../../data/customerLogin.txt", info);
+                    File.WriteAllLines("data/customerLogin.txt", info);
 
                     Console.WriteLine("Customer information updated successfully.");
                     Console.WriteLine("Press any key to continue");

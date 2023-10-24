@@ -34,18 +34,18 @@ public class Checkout
 
                 if (double.TryParse(prices[1], out double c))
                 {
-                    total += c;
+                    total += Math.Round(c, 2);
                 }
                 else
                 {
                     Console.WriteLine("Product price not found");
                 }
             }
-        }
-        Console.WriteLine("Order total: $" + Math.Round(total, 2));
-        Console.WriteLine();
-        Console.WriteLine("---------------------------------\n");
-        Console.WriteLine("\n1. Checkout\n2. Cancel Order");
+
+            Console.WriteLine("Order total: $" + Math.Round(total, 2));
+            Console.WriteLine();
+            Console.WriteLine("---------------------------------\n");
+            Console.WriteLine("\n1. Checkout\n2. Cancel Order");
 
             switch (Console.ReadLine())
             {
@@ -66,15 +66,14 @@ public class Checkout
                     Console.Clear();
                     Console.WriteLine("Invalid input");
                     break;
-
             }
         }
+    }
+
     public static void Save()
     {
-        int ordernumber = 1;
-
-        File.ReadAllLines($"../../../userdata/{Customer.UserList[0].Username}.txt");
-        StreamWriter write = File.AppendText($"../../../userdata/{Customer.UserList[0].Username}.txt");
+        File.ReadAllLines($"userdata/{Customer.UserList[0].Username}.txt");
+        StreamWriter write = File.AppendText($"userdata/{Customer.UserList[0].Username}.txt");
 
         write.WriteLine($"{DateTime.Now}\n\nCart:\n*****************************\n");
 
@@ -86,9 +85,5 @@ public class Checkout
         write.WriteLine($"\n*****************************\n\nTotal sum: ${Math.Round(total, 2)}\n");
 
         write.Close();
-
-        ordernumber++;
     }
 }
-
-   
