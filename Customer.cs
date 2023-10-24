@@ -106,17 +106,80 @@ public class Customer
 
     public static void OrderHistory()
     {
-        Console.WriteLine("-------------");
-        Console.WriteLine("Order History");
-        Console.WriteLine("-------------");
         Console.Clear();
-        string[] history = File.ReadAllLines($"../../../userdata/{UserList[0].Username}.txt");
-        foreach (var item in history)
-        {
-            Console.WriteLine(item);
-        }
+
+        Console.WriteLine("Order History:");
         Console.WriteLine();
-        Console.WriteLine("----------------------------------------");
+        string[] receipts = File.ReadAllLines($"../../../userdata/{UserList[0].Username}.txt");
+
+        if (receipts.Length == 0 || !File.Exists($"../../../userdata/{UserList[0].Username}.txt"))
+        {
+            Console.WriteLine("----------------------");
+            Console.WriteLine("No order history found!");
+            Console.WriteLine("----------------------");
+        }
+        else
+        {
+
+            // Skapar lista över orders (hämtar första raden i varje order)
+            List<string> orderlist = new List<string>();
+
+            for (int i = 0; i < receipts.Length; i++)
+            {
+                if (receipts[i].StartsWith("20"))
+                {
+                    orderlist.Add(receipts[i]);
+                }
+            }
+
+            int indexer = 1;
+
+            // Skriver ut listan och indexerar
+            foreach (var item in orderlist)
+            {
+                Console.WriteLine($"Order #{indexer} -- {item}");
+                indexer++;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Enter order number to view order");
+
+            string? input = Console.ReadLine();
+
+            Console.Clear();
+
+            if (int.TryParse(input, out int x) && x >= 1 && x <= orderlist.Count)
+            {
+                string orderChoice = orderlist[x - 1];
+
+                int receiptStart = Array.IndexOf(receipts, orderChoice);
+
+                int receiptEnd = receiptStart;
+
+                // Adderar 1 (line) till receiptEnd tills den når raden "Total sum"
+                while (receiptEnd < receipts.Length && !receipts[receiptEnd].Contains("Total sum:"))
+                {
+                    receiptEnd++;
+                }
+
+                // Skriver ut kvittot
+                for (int i = receiptStart; i < receiptEnd; i++)
+                {
+                    Console.WriteLine(receipts[i]);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Order number not found.");
+            }
+        }
+
+        //foreach (var orderdetail in receipts)
+
+        //{
+        //    Console.WriteLine(orderdetail);
+        //}
+        Console.WriteLine();
         Console.WriteLine();
         Console.WriteLine("Press any key to go back");
         Console.ReadKey();
