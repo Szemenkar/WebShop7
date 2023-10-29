@@ -28,6 +28,8 @@ x86/
 [Aa][Rr][Mm]64/
 bld/
 [Bb]in/
+!*/bin/Debug/net7.0/data
+!*/bin/Debug/net7.0/userdata
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
