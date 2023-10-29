@@ -17,16 +17,11 @@
 mono_crash.*
 
 # Build results
-!*/bin/Debug/net7.0/data
-!*/bin/Debug/net7.0/userdata
-!/bin/Debug/net7.0/data/adminLogin.txt
-!/bin/Debug/net7.0/data/customerLogin.txt
-!/bin/Debug/net7.0/data/title.txt
-!/bin/Debug/net7.0/data/products.txt
+*.json
+*.exe
+*.dll
+*.pdb
 
-
-
-[Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
@@ -36,7 +31,6 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
-[Bb]in/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
